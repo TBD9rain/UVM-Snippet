@@ -1,0 +1,67 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.1.0
+#
+#   Description
+#       UVM based agent
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Agent|Agt" "UVM Agent" rb
+class ${1:Agent}${2: #(
+	$3
+)} extends uvm_agent;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//  variable definition
+	typedef ${6:Txn}${7: #($8)} TXN;
+
+	${9:Config}${10: #($11)} ${12:cfg};
+
+	${13:Sqr}${14: #($15)} sqr;
+	${16:Drv}${17: #($18)} drv;
+	${19:Mon}${20: #($21)} mon;
+
+	uvm_analysis_port #(TXN) ap;$0
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+		if (!uvm_config_db #($9$10)::get(this, "", "$12", $12)) begin
+			\`uvm_fatal("$1", "configuration is not set.")
+		end
+		is_active = $12.drv_en;
+
+		if (is_active == UVM_ACTIVE) begin
+			sqr = $13$14::type_id::create("sqr", this);
+			drv = $16$17::type_id::create("drv", this);
+			uvm_config_db #($9$10)::set(this, "sqr", "$12", $12);
+			uvm_config_db #($9$10)::set(this, "drv", "$12", $12);
+		end
+		mon = $19$20::type_id::create("mon", this);
+		uvm_config_db #($9$10)::set(this, "mon", "$12", $12);
+		ap = new("ap", this);
+	endfunction
+
+	function void connect_phase(uvm_phase phase);
+		super.connect_phase(phase);
+
+		if (is_active == UVM_ACTIVE) begin
+			drv.seq_item_port.connect(sqr.seq_item_export);
+		end
+		mon.ap.connect(ap);
+	endfunction
+endclass
+endsnippet

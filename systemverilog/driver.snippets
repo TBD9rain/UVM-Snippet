@@ -1,0 +1,66 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.1.0
+#
+#   Description
+#       UVM based driver
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Drv|Driver" "UVM Driver" rb
+class ${1:Driver}${2: #(
+	$3
+)} extends uvm_driver #(.REQ (${4:Txn}));
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${5: #($6)})
+
+	//  variable definition
+	${7:Config}${8: #($9)} ${10:cfg};
+
+	virtual ${11:dut_if}${12: #($13)}.drv_mp vif;$0
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+		if (!uvm_config_db #($7$8)::get(this, "", "$10", $10)) begin
+			\`uvm_fatal("$1", "configuration is not set.")
+		end
+		vif = $10.vif;
+	endfunction
+
+	task reset_phase(uvm_phase phase);
+		phase.raise_objection(this);
+		phase.drop_objection(this);
+	endtask
+
+	task pre_main_phase(uvm_phase phase);
+		phase.raise_objection(this);
+		while(vif.rst_n !== 0) begin
+			@vif.cb;
+		end
+		phase.drop_objection(this);
+	endtask
+
+	task main_phase(uvm_phase phase);
+		forever begin
+			seq_item_port.get_next_item(req);
+			drive_req(req);
+			seq_item_port.item_done();
+		end
+	endtask
+
+	task drive_req(REQ txn);
+	endtask
+endclass
+endsnippet

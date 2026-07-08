@@ -1,0 +1,56 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.0.0
+#
+#   Description
+#       UVM based configuration object for passing configuration across the platform
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Cfg|Config" "UVM Configuration Object" rb
+class ${1:Config}${2: #(
+	$3
+)} extends uvm_object;
+
+	\`uvm_object`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//----------
+	//  Variable
+	//----------
+
+	//  virtual interface
+	virtual ${6:dut_if}${7: #($8)} vif;
+
+	//  drive enable
+	uvm_active_passive_enum drv_en = UVM_ACTIVE;
+
+	//  result check enable
+	bit scb_en = 0;
+
+	//  fault inject enable
+	bit fault_inject_en = 0;
+
+	//  coverage collect enable
+	bit cov_en = 0;
+
+	//  reference latency
+	int unsigned ref_latency = 0;$0
+
+
+	//--------
+	//  Method
+	//--------
+
+	function new(string name="$1");
+		super.new(name);
+	endfunction
+endclass
+endsnippet
+

@@ -1,0 +1,51 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.0.5
+#
+#   Description
+#       UVM based coverage collector
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Cov(Col|erageCollector)?" "UVM Coverage Collector" rb
+class ${1:CoverageCollector}${2: #(
+	$3
+)} extends uvm_component;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	typedef ${6:Txn} T;
+
+	//  variable definition
+	uvm_blocking_get_port #(T) imon_getp;
+	T tc_txn;
+
+	//  coverage group definition
+	$0
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+		imon_getp = new("imon_getp", this);
+	endfunction
+
+	task main_phase(uvm_phase phase);
+		forever begin
+			imon_getp.get(tc_txn);
+		end
+	endtask
+endclass
+endsnippet
+
+

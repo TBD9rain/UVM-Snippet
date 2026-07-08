@@ -1,0 +1,105 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.1.6
+#
+#   Description
+#       UVM based transaction
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Txn|Transaction" "UVM Transaction" rb
+class ${1:Txn}${2: #(
+	$3
+)} extends uvm_sequence_item;
+
+	//----------
+	//  Variable
+	//----------
+
+	//  Use bit for input, logic for output$0
+
+	//  time stamp
+	longint unsigned timestamp = 0;
+
+
+	//----------
+	//  Registry
+	//----------
+
+	\`uvm_object`!p snip.rv='_param' if t[2] else ''`_utils_begin($1${4: #($5)})
+		\`uvm_field_int(timestamp, UVM_ALL_ON | UVM_NOCOMPARE)
+	\`uvm_object_utils_end
+
+
+	//--------
+	//  Method
+	//--------
+
+	function new(string name="$1");
+		super.new(name);
+	endfunction
+endclass
+endsnippet
+
+
+snippet "do_" "Reload do_copy function" Abr
+virtual function void do_copy(uvm_object rhs);
+	//  called by copy() function
+
+	${1:Txn} rhs_;
+	if(!\$cast(rhs_, rhs)) begin
+		\`uvm_fatal("$1", "do_copy type conversion failed.")
+	end
+
+	super.do_copy(rhs);
+
+	//  this class property copy
+	$0
+endfunction
+endsnippet
+
+
+snippet "do_" "Reload do_compare() function" Abr
+virtual function bit do_compare(uvm_object rhs, uvm_comparer comparer);
+	//  called by compare() function
+
+	${1:Txn} rhs_;
+	do_compare = super.do_compare(rhs, comparer);
+	if(!\$cast(rhs_, rhs)) begin
+		\`uvm_fatal("$1", "do_compare type conversion failed.")
+	end
+
+	//  this class property compare
+	do_compare &= (this.${2:property} === rhs_.$2);
+endfunction
+endsnippet
+
+
+snippet "do_" "Reload convert2string() function" Abr
+virtual function string convert2string();
+	string s = super.convert2string();
+
+	//  this class property to string
+	s = {s, \$sformatf($0)};
+
+	return s;
+endfunction
+endsnippet
+
+
+snippet "do_" "Reload do_print() function" Abr
+virtual function void do_print(uvm_printer printer);
+	//  called by sprint()
+
+	printer.m_string = convert2string();
+endfunction
+endsnippet
+
+

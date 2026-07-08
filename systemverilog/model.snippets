@@ -1,0 +1,66 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.1.0
+#
+#   Description
+#       UVM based reference model
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Mdl|RefMdl|Model|ReferenceModel" "UVM Reference Model" rb
+class ${1:Model}${2: #(
+	$3
+)} extends uvm_component;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//  variable definition
+	typedef ${6:InTxn}${7: #($8)} ITXN;
+	typedef ${9:OutTxn}${10: #($11)} OTXN;
+
+	${12:Config}${13: #($14)} ${15:cfg};
+
+	uvm_blocking_get_port #(ITXN) imon_getp;
+	uvm_blocking_put_port #(OTXN) scb_putp;$0
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+		if (!uvm_config_db #($12$13)::get(this, "", "$15", $15)) begin
+			\`uvm_fatal("$1", "configuration is not set.")
+		end
+
+		imon_getp = new("imon_getp", this);
+		scb_putp = new("scb_putp", this);
+	endfunction
+
+	task main_phase(uvm_phase phase);
+		ITXN mon_txn;
+		OTXN exp_txn;
+
+		forever begin
+			imon_getp.get(mon_txn);
+			ref_proc(mon_txn, exp_txn);
+			scb_putp.put(exp_txn);
+		end
+	endtask
+
+	task ref_proc(
+		const ref ITXN in_txn,
+		output OTXN out_txn);
+
+		out_txn = OTXN::type_id::create("out_txn");
+	endtask
+endclass
+endsnippet

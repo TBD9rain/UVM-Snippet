@@ -1,0 +1,56 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.0.0
+#
+#   Description
+#		UVM based fault injector
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "FaultInjector|FI" "Fault Injector" rb
+class ${1:FaultInjector}${2: #(
+	$3
+)} extends uvm_component;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//  variable definition
+	typedef ${6:Txn}${7: #($8)} TXN;
+
+	uvm_analysis_imp #(TXN, $1$4) imp;
+	uvm_analysis_port #(TXN) ap;$0
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+		imp = new("imp", this);
+		ap = new("ap", this);
+	endfunction
+
+	virtual function void fault_inject(TXN txn);
+	endfunction
+
+	virtual function void write(TXN txn);
+		TXN insert_txn;
+
+		insert_txn = TXN::type_id::create("insert_txn");
+		insert_txn.copy(txn);
+
+		fault_inject(insert_txn);
+
+		ap.write(insert_txn);
+	endfunction
+endclass
+endsnippet
+

@@ -1,0 +1,54 @@
+#===================================================================================================
+#
+#   Target Code : Do script (TCL)
+#   Version     : 1.0.0
+#
+#   Description
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet report "QuestaSim UVM Report Script" Ab
+#==============================
+#   QuestaSim UVM Report Script
+#==============================
+
+
+#-------------------------
+#   Prepare for Simulation
+#-------------------------
+
+# quit simulation
+quit -sim
+# clear commands
+# .main clear
+
+
+#----------------------------
+#   Generate Summary Database
+#----------------------------
+
+vcover merge -out sum.ucdb cov_db
+
+
+#--------------------------------
+#   Generate HTML Coverage Report
+#--------------------------------
+
+vcover report -details -html -htmldir cov_rpt_html sum.ucdb
+
+
+#------------------------
+# Remove Summary Database
+#------------------------
+
+file delete -force sum.ucdb
+
+endsnippet
+
+

@@ -1,0 +1,70 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.2.0
+#
+#   Description
+#       UVM based monitor
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Mon(itor)?" "UVM Monitor" rb
+class ${1:Monitor}${2: #(
+	$3
+)} extends uvm_monitor;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//  variable definition
+	typedef ${6:Txn}${7: #($8)} TXN;
+
+	${9:Config}${10: #($11)} ${12:cfg};
+
+	virtual ${13:dut_if}${14: #($15)}.mon_mp vif;
+
+	uvm_analysis_port #(TXN) ap;$0
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+		if (!uvm_config_db #($9$10)::get(this, "", "$12", $12)) begin
+			\`uvm_fatal("$1", "configuration is not set.")
+		end
+		vif = $12.vif;
+
+		ap = new("ap", this);
+	endfunction
+
+	task main_phase(uvm_phase phase);
+		TXN txn;
+
+		forever begin
+			sample_txn(txn);
+			ap.write(txn);
+		end
+	endtask
+
+	task sample_txn;
+		output TXN txn;
+
+		txn = TXN::type_id::create("txn");
+
+		//  sample until the condition holds (use "===" / "!==")
+		while (${16:vif.valid !== 1'b1}) begin
+			@(${17|posedge,negedge|} vif.clk);
+		end
+		txn.timestamp = vif.clk_cnt;
+		@($18 vif.clk);
+	endtask
+endclass
+endsnippet

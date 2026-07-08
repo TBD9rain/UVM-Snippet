@@ -1,0 +1,167 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.3.0
+#
+#   Description
+#       UVM based environment
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Env(ironment)?" "UVM Environment" rb
+class ${1:Environment}${2: #(
+	$3
+)} extends uvm_env;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//  variable definition
+	typedef ${6:InTxn}${7: #($8)} ITXN;
+	typedef ${9:OutTxn}${10: #($11)} OTXN;
+
+	${12:Config}${13: #($14)} ${15:cfg};
+
+	${16:InAgt}${17: #($18)} i_agt;
+	${19:OutAgt}${20: #($21)} o_agt;
+	${22:Cov}${23: #($24)} cov;
+	${25:Mdl}${26: #($27)} mdl;
+	${28:Scb}${29: #($30)} scb;
+	${31:ScbFI}${32: #($33)} fi;
+
+	bit scb_en = 0;
+	bit fault_inject_en = 0;
+	bit cov_en = 0;
+	int unsigned ref_latency = 0;
+
+	uvm_tlm_analysis_fifo #(ITXN) cov_sti_fifo;
+	uvm_tlm_analysis_fifo #(ITXN) mdl_sti_fifo;
+	uvm_tlm_analysis_fifo #(ITXN) scb_sti_fifo;
+	uvm_tlm_analysis_fifo #(OTXN) scb_obs_fifo;
+	uvm_tlm_fifo #(OTXN) scb_exp_fifo;$0
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+		if (!uvm_config_db #($12$13)::get(this, "", "$15", $15)) begin
+			\`uvm_fatal("$1", "configuration is not set.")
+		end
+		scb_en = $15.scb_en;
+		fault_inject_en = $15.fault_inject_en;
+		cov_en = $15.cov_en;
+		ref_latency = $15.ref_latency;
+
+		i_agt = $16$17::type_id::create("i_agt", this);
+		uvm_config_db #($12$13)::set(this, "i_agt", "$15", $15);
+
+		if (cov_en) begin
+			cov = $22$23::type_id::create("cov", this);
+			cov_sti_fifo = new("cov_sti_fifo", this);
+		end
+
+		o_agt = $19$20::type_id::create("o_agt", this);
+		uvm_config_db #($12$13)::set(this, "o_agt", "$15", $15);
+
+		if (!scb_en) begin
+			return;
+		end
+
+		mdl = $25$26::type_id::create("mdl", this);
+		scb = $28$29::type_id::create("scb", this);
+		uvm_config_db #($12$13)::set(this, "mdl", "$15", $15);
+		uvm_config_db #($12$13)::set(this, "scb", "$15", $15);
+
+		if (fault_inject_en) begin
+			fi = $31$32::type_id::create("fi", this);
+		end
+
+		mdl_sti_fifo = new("mdl_sti_fifo", this);
+		scb_sti_fifo = new("scb_sti_fifo", this);
+		scb_obs_fifo = new("scb_obs_fifo", this);
+		scb_exp_fifo = new("scb_exp_fifo", this, ref_latency);
+	endfunction
+
+	function void connect_phase(uvm_phase phase);
+		super.connect_phase(phase);
+
+		if (cov_en) begin
+			i_agt.ap.connect(cov_sti_fifo.analysis_export);
+			cov.imon_getp.connect(cov_sti_fifo.blocking_get_export);
+		end
+
+		if (!scb_en) begin
+			return;
+		end
+
+		i_agt.ap.connect(mdl_sti_fifo.analysis_export);
+		mdl.imon_getp.connect(mdl_sti_fifo.blocking_get_export);
+
+		i_agt.ap.connect(scb_sti_fifo.analysis_export);
+		scb.imon_getp.connect(scb_sti_fifo.nonblocking_get_export);
+
+		if (fault_inject_en) begin
+			o_agt.ap.connect(fi.imp);
+			fi.ap.connect(scb_obs_fifo.analysis_export);
+		end
+		else begin
+			o_agt.ap.connect(scb_obs_fifo.analysis_export);
+		end
+		scb.omon_getp.connect(scb_obs_fifo.blocking_get_export);
+
+		mdl.scb_putp.connect(scb_exp_fifo.blocking_put_export);
+		scb.mdl_getp.connect(scb_exp_fifo.nonblocking_get_export);
+	endfunction
+endclass
+endsnippet
+
+snippet "Env(ironment)?" "UVM Integrated Environment" rb
+class ${1:Environment}${2: #(
+	$3
+)} extends uvm_env;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//  variable definition
+	${6:Config}${7: #($8)} ${9:cfg};
+
+	${10:Env0}${11: #($12)} ${13:env0};
+	${14:Env1}${15: #($16)} ${17:env1};
+
+	${18:VSqr}${19: #($20)} ${21:vsqr};
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+
+	function void build_phase(uvm_phase phase);
+		super.build_phase(phase);
+
+		if (!uvm_config_db #($6$7)::get(this, "", "$9", $9)) begin
+			\`uvm_fatal("$1", "configuration is not set.")
+		end
+
+		$13 = $10$11::type_id::create("$13", this);
+		$17 = $14$15::type_id::create("$17", this);
+		uvm_config_db #($6$7)::set(this, "$13", "$9", $9);
+		uvm_config_db #($6$7)::set(this, "$17", "$9", $9);
+
+		$21 = $18$19::type_id::create("$21", this);
+	endfunction
+
+	function void connect_phase(uvm_phase phase);
+		super.connect_phase(phase);
+
+		$21.sqr0 = $13.i_agt.sqr;
+		$21.sqr1 = $17.i_agt.sqr;
+	endfunction
+endclass
+endsnippet

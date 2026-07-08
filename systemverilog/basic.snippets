@@ -1,0 +1,164 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.0.7
+#
+#   Description
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+
+#--------------------------
+# Basic UVM Class Extension
+#--------------------------
+
+snippet class "UVM Component" b
+class ${1:Component}${2: #(
+	$3
+)} extends uvm_component;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//----------
+	//  Variable
+	//----------$0
+
+
+
+	//--------
+	//  Method
+	//--------
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+endclass
+endsnippet
+
+snippet class "UVM Object" b
+class ${1:Object}${2: #(
+	$3
+)} extends uvm_object;
+
+	\`uvm_object`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	//----------
+	//  Variable
+	//----------$0
+
+
+
+	//--------
+	//  Method
+	//--------
+
+	function new(string name="$1");
+		super.new(name);
+	endfunction
+endclass
+endsnippet
+
+
+#------
+# TLM-1
+#------
+
+snippet port "UVM TLM-1 Port" b
+uvm${1|,_blocking,_nonblocking|}_${2|put,get,peek,get_peek|}_port #(${3:int}) ${4:port};
+endsnippet
+
+snippet export "UVM TLM-1 Export" b
+uvm${1|,_blocking,_nonblocking|}_${2|put,get,peek,get_peek|}_export #(${3:int}) ${4:export};
+endsnippet
+
+snippet imp "UVM TLM-1 Implementation" b
+uvm${1|,_blocking,_nonblocking|}_${2|put,get,peek,get_peek|}_imp #(${3:int}, ${4:class}) ${5:imp};
+endsnippet
+
+snippet analysis "UVM TLM-1 Analysis Communication" b
+uvm_analysis_${1|port,export|} #(${2:int}) ${3:ap};
+endsnippet
+
+snippet analysis "UVM TLM-1 Analysis Implementation" b
+uvm_analysis_imp #(${1:int}, ${2:class}) ${3:imp};
+endsnippet
+
+snippet fifo "UVM TLM-1 FIFO" b
+uvm_tlm${1:_analysis}_fifo #(${2:int}) ${3:fifo};
+endsnippet
+
+
+#-----------
+# UVM Config
+#-----------
+
+snippet config "UVM Config Set" w
+uvm_config_db #(${1:int})::set(${2|this,null|}, "${3:hier_path}", "${4:var_name}", $4);
+endsnippet
+
+snippet config "UVM Config Get" w
+uvm_config_db #(${1:int})::get(${2|this,null|}, "", "${3:var_name}", $3);
+endsnippet
+
+
+#------------------
+# Factory Mechanism
+#------------------
+
+snippet "=\s+create" "Factory Create" rA
+= ${1:Class}${2: #($3)}::type_id::create("${4:name}"${5:, this});$0
+endsnippet
+
+
+#---------------------------
+# Field Automation Mechanism
+#---------------------------
+
+snippet field "Singular Variable Field Automation Registry" b
+\`uvm_field_${1|int,object,string,real,event|}(${2:arg}, ${3:UVM_ALL_ON})$0
+endsnippet
+
+snippet field "Singular Enum Field Automation Registry" b
+\`uvm_field_enum(${1:enum_type}, ${2:arg}, ${3:UVM_ALL_ON})$0
+endsnippet
+
+snippet field "Static Array/Dynamic Array/Queue Field Automation Registry" b
+\`uvm_field_${1|sarray,array,queue|}_${2|int,object,string|}(${3:arg}, ${4:UVM_ALL_ON})
+endsnippet
+
+snippet field "Enum Static Array/Dynamic Array/Queue Field Automation Registry" b
+\`uvm_field_${1|sarray,array,queue|}_enum(${2:enum_type}, ${3:arg}, ${4:UVM_ALL_ON})
+endsnippet
+
+snippet field "Associated Array Field Automation Registry" b
+\`uvm_field_aa_${1:value_type}_${2:key_type}(${3:arg}, ${4:UVM_ALL_ON})
+endsnippet
+
+
+#-------------------------
+# UVM Message Print Macros
+#-------------------------
+
+snippet "msg|message" "UVM Info Macro" rb
+\`uvm_info("${1:ID}", ${2:"${3:message}"}, UVM_${4|NONE,LOW,MEDIUM,HIGH,FULL,DEBUG|})$0
+endsnippet
+
+snippet "msg|message" "UVM Warning Macro" rb
+\`uvm_warning("${1:ID}", ${2:"${3:message}"})$0
+endsnippet
+
+snippet "msg|message" "UVM Error Macro" rb
+\`uvm_error("${1:ID}", ${2:"${3:message}"})$0
+endsnippet
+
+snippet "msg|message" "UVM Fatal Macro" rb
+\`uvm_fatal("${1:ID}", ${2:"${3:message}"})$0
+endsnippet
+
+

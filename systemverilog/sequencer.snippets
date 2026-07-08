@@ -1,0 +1,46 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.1.3
+#
+#   Description
+#       UVM based sequencer
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet "Sqr|Sequencer" "UVM Sequencer" rb
+class ${1:Sequencer}${2: #(
+	$3
+)} extends uvm_sequencer #(.REQ (${4:Txn}));
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${5: #($6)})
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+endclass
+endsnippet
+
+snippet "Sqr|Sequencer" "UVM Virtual Sequencer" rb
+class ${1:VirtualSequencer}${2: #(
+	$3
+)} extends uvm_sequencer;
+
+	\`uvm_component`!p snip.rv='_param' if t[2] else ''`_utils($1${4: #($5)})
+
+	${6:Sqr0}${7: #($8)} ${9:sqr0};
+	${10:Sqr1}${11: #($12)} ${13:sqr1};
+
+	function new(string name="$1", uvm_component parent=null);
+		super.new(name, parent);
+	endfunction
+endclass
+endsnippet
+
+
