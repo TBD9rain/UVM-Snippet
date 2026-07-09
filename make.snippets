@@ -35,6 +35,11 @@ SIM_TIME ?= 0
 VOPT_EXTRA_ARGS ?=
 VSIM_EXTRA_ARGS ?=
 
+# diamond pmi source library
+PMI_LIB ?= D:/lscc/diamond/3.11_x64/cae_library/simulation/verilog/pmi
+# radiant pmi source library
+# PMI_LIB ?= D:/lscc/radiant/3.2/ip/pmi0
+
 QUESTA_HOME ?= D:/questasim64_2026.2
 UVM_LIB_DIR := $(QUESTA_HOME)/uvm-1.2
 UVM_SRC_DIR := $(QUESTA_HOME)/verilog_src/uvm-1.2/src
@@ -114,7 +119,7 @@ endif
 
 compile:
 	@echo [Make Command: compile] Compile RTL and TB files
-	@vlog -work work -suppress 223 $(VLOG_COVER_ARGS) -f "$(SRC_FILELIST)"
+	@vlog -work work -suppress 223 $(VLOG_COVER_ARGS) +libext+.v -y "$(PMI_LIB)" -f "$(SRC_FILELIST)"
 	@vlog -work work -suppress 223 -sv -sv17compat +incdir+"$(UVM_SRC_DIR)" -L uvm-1.2 -f "$(TB_FILELIST)"
 
 optimize:
@@ -192,7 +197,7 @@ reload-do:
 	@(echo # It quits the current sim, recompiles, reloads design, and re-runs --) >> reload.do
 	@(echo # all inside the current Visualizer process.) >> reload.do
 	@(echo quit -sim) >> reload.do
-	@(echo vlog -work work -suppress 223 $(VLOG_COVER_ARGS) -f "$(SRC_FILELIST)") >> reload.do
+	@(echo vlog -work work -suppress 223 $(VLOG_COVER_ARGS) +libext+.v -y "$(PMI_LIB)" -f "$(SRC_FILELIST)") >> reload.do
 	@(echo vlog -work work -suppress 223 -sv -sv17compat +incdir+"$(UVM_SRC_DIR)" -L uvm-1.2 -f "$(TB_FILELIST)") >> reload.do
 	@(echo vopt -64 -O4 -suppress 223,2240,53 $(VOPT_DEBUG_ARGS) $(VOPT_EXTRA_ARGS) -L uvm-1.2 "$(TB_MODULE)" -o opt_tb) >> reload.do
 	@(echo vsim $(RELOAD_VSIM_ARGS) -do {$(RUN_TIME_DO)}) >> reload.do

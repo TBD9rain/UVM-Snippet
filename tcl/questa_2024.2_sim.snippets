@@ -30,6 +30,11 @@ set uvm_test    ${4:BaseTest}
 set randseed    0
 set onfinish    stop$0
 
+# diamond pmi source library
+set pmi_lib         D:/lscc/diamond/3.11_x64/cae_library/simulation/verilog/pmi
+# radiant pmi source library
+# set pmi_lib         D:/lscc/radiant/3.2/ip/pmi0
+
 # UVM-1.2 file path
 set questa_home ${5:D:/questasim64_2024.2_1}
 set uvm_lib_dir $questa_home/uvm-1.2
@@ -72,6 +77,7 @@ vmap work ./work
 
 vlog -work work\
 	+cover=bcefst\
+	+libext+.v -y $pmi_lib\
 	-f src_filelist.txt
 
 vlog -work work\
