@@ -1,0 +1,1102 @@
+[
+  {
+    "id": "make",
+    "file": "make/make.md",
+    "triggers": [
+      "makefile"
+    ],
+    "description": "Makefile for Questa Sim 2026.2 Verification on Windows",
+    "category": "make",
+    "placeholders": [
+      "TB_NAME"
+    ]
+  },
+  {
+    "id": "agent",
+    "file": "systemverilog/agent.md",
+    "triggers": [
+      "Agent",
+      "Agt"
+    ],
+    "description": "UVM Agent",
+    "category": "systemverilog",
+    "placeholders": [
+      "AGENT",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "TXN",
+      "PARAMS_7",
+      "TAB_8",
+      "CONFIG",
+      "PARAMS_10",
+      "TAB_11",
+      "CFG",
+      "SQR",
+      "PARAMS_14",
+      "TAB_15",
+      "DRV",
+      "PARAMS_17",
+      "TAB_18",
+      "MON",
+      "PARAMS_20",
+      "TAB_21",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "basic__associated-array-field-automation-registry",
+    "file": "systemverilog/basic__associated-array-field-automation-registry.md",
+    "triggers": [
+      "field"
+    ],
+    "description": "Associated Array Field Automation Registry",
+    "category": "systemverilog",
+    "placeholders": [
+      "VALUE_TYPE",
+      "KEY_TYPE",
+      "ARG",
+      "UVM_ALL_ON"
+    ]
+  },
+  {
+    "id": "basic__bind-construct",
+    "file": "systemverilog/basic__bind-construct.md",
+    "triggers": [
+      "bind"
+    ],
+    "description": "bind construct",
+    "category": "systemverilog",
+    "placeholders": [
+      "TARGET_INST_HIER_PATH",
+      "BIND_ELEMENT",
+      "PARAMS_3",
+      "TAB_4",
+      "TAB_5",
+      "TAB_6"
+    ]
+  },
+  {
+    "id": "basic__bins-description",
+    "file": "systemverilog/basic__bins-description.md",
+    "triggers": [
+      "bins"
+    ],
+    "description": "bins description",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1",
+      "BIN_NAME"
+    ]
+  },
+  {
+    "id": "basic__coverage-model-definition",
+    "file": "systemverilog/basic__coverage-model-definition.md",
+    "triggers": [
+      "covergroup"
+    ],
+    "description": "coverage model definition",
+    "category": "systemverilog",
+    "placeholders": [
+      "COVERGROUP_NAME",
+      "TAB_2",
+      "TAB_3",
+      "TAB_4"
+    ]
+  },
+  {
+    "id": "basic__coverage-point-definition",
+    "file": "systemverilog/basic__coverage-point-definition.md",
+    "triggers": [
+      "coverpoint"
+    ],
+    "description": "coverage point definition",
+    "category": "systemverilog",
+    "placeholders": [
+      "LABEL",
+      "VAR_NAME",
+      "LABEL_SEP"
+    ]
+  },
+  {
+    "id": "basic__cross-coverage-definition",
+    "file": "systemverilog/basic__cross-coverage-definition.md",
+    "triggers": [
+      "cross"
+    ],
+    "description": "cross coverage definition",
+    "category": "systemverilog",
+    "placeholders": [
+      "LABEL",
+      "TAB_2",
+      "LABEL_SEP"
+    ]
+  },
+  {
+    "id": "basic__empty-class-skeleton",
+    "file": "systemverilog/basic__empty-class-skeleton.md",
+    "triggers": [
+      "class"
+    ],
+    "description": "empty class skeleton",
+    "category": "systemverilog",
+    "placeholders": [
+      "CLS_NAME"
+    ]
+  },
+  {
+    "id": "basic__enum-static-array-dynamic-array-queue-field-automation-registry",
+    "file": "systemverilog/basic__enum-static-array-dynamic-array-queue-field-automation-registry.md",
+    "triggers": [
+      "field"
+    ],
+    "description": "Enum Static Array/Dynamic Array/Queue Field Automation Registry",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1",
+      "ENUM_TYPE",
+      "ARG",
+      "UVM_ALL_ON"
+    ]
+  },
+  {
+    "id": "basic__factory-create",
+    "file": "systemverilog/basic__factory-create.md",
+    "triggers": [
+      "=\\s+create"
+    ],
+    "description": "Factory Create",
+    "category": "systemverilog",
+    "placeholders": [
+      "CLASS",
+      "PARAMS_2",
+      "TAB_3",
+      "NAME",
+      "TAB_5"
+    ]
+  },
+  {
+    "id": "basic__for-iteration",
+    "file": "systemverilog/basic__for-iteration.md",
+    "triggers": [
+      "for "
+    ],
+    "description": "for iteration",
+    "category": "systemverilog",
+    "placeholders": [
+      "I",
+      "TAB_2"
+    ]
+  },
+  {
+    "id": "basic__fork-block",
+    "file": "systemverilog/basic__fork-block.md",
+    "triggers": [
+      "fork "
+    ],
+    "description": "fork block",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1"
+    ]
+  },
+  {
+    "id": "basic__function-skeleton",
+    "file": "systemverilog/basic__function-skeleton.md",
+    "triggers": [
+      "function"
+    ],
+    "description": "function skeleton",
+    "category": "systemverilog",
+    "placeholders": [
+      "AUTOMATIC",
+      "VOID",
+      "FUNC_NAME"
+    ]
+  },
+  {
+    "id": "basic__instant-assert",
+    "file": "systemverilog/basic__instant-assert.md",
+    "triggers": [
+      "assert "
+    ],
+    "description": "instant assert",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1"
+    ]
+  },
+  {
+    "id": "basic__mailbox-definition",
+    "file": "systemverilog/basic__mailbox-definition.md",
+    "triggers": [
+      "mailbox "
+    ],
+    "description": "mailbox definition",
+    "category": "systemverilog",
+    "placeholders": [
+      "MB_NAME",
+      "DATA_TYPE"
+    ]
+  },
+  {
+    "id": "basic__rand-variable-definition",
+    "file": "systemverilog/basic__rand-variable-definition.md",
+    "triggers": [
+      "rand "
+    ],
+    "description": "rand variable definition",
+    "category": "systemverilog",
+    "placeholders": [
+      "VAR_NAME",
+      "TAB_1",
+      "TAB_2"
+    ]
+  },
+  {
+    "id": "basic__randc-variable-definition",
+    "file": "systemverilog/basic__randc-variable-definition.md",
+    "triggers": [
+      "randc "
+    ],
+    "description": "randc variable definition",
+    "category": "systemverilog",
+    "placeholders": [
+      "VAR_NAME",
+      "TAB_1",
+      "TAB_2"
+    ]
+  },
+  {
+    "id": "basic__singular-enum-field-automation-registry",
+    "file": "systemverilog/basic__singular-enum-field-automation-registry.md",
+    "triggers": [
+      "field"
+    ],
+    "description": "Singular Enum Field Automation Registry",
+    "category": "systemverilog",
+    "placeholders": [
+      "ENUM_TYPE",
+      "ARG",
+      "UVM_ALL_ON"
+    ]
+  },
+  {
+    "id": "basic__singular-variable-field-automation-registry",
+    "file": "systemverilog/basic__singular-variable-field-automation-registry.md",
+    "triggers": [
+      "field"
+    ],
+    "description": "Singular Variable Field Automation Registry",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1",
+      "ARG",
+      "UVM_ALL_ON"
+    ]
+  },
+  {
+    "id": "basic__static-array-dynamic-array-queue-field-automation-registry",
+    "file": "systemverilog/basic__static-array-dynamic-array-queue-field-automation-registry.md",
+    "triggers": [
+      "field"
+    ],
+    "description": "Static Array/Dynamic Array/Queue Field Automation Registry",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1",
+      "TAB_2",
+      "ARG",
+      "UVM_ALL_ON"
+    ]
+  },
+  {
+    "id": "basic__task-skeleton",
+    "file": "systemverilog/basic__task-skeleton.md",
+    "triggers": [
+      "task"
+    ],
+    "description": "task skeleton",
+    "category": "systemverilog",
+    "placeholders": [
+      "AUTOMATIC",
+      "TASK_NAME"
+    ]
+  },
+  {
+    "id": "basic__uvm-component",
+    "file": "systemverilog/basic__uvm-component.md",
+    "triggers": [
+      "class"
+    ],
+    "description": "UVM Component",
+    "category": "systemverilog",
+    "placeholders": [
+      "COMPONENT",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "basic__uvm-config-get",
+    "file": "systemverilog/basic__uvm-config-get.md",
+    "triggers": [
+      "config"
+    ],
+    "description": "UVM Config Get",
+    "category": "systemverilog",
+    "placeholders": [
+      "INT",
+      "TAB_2",
+      "VAR_NAME"
+    ]
+  },
+  {
+    "id": "basic__uvm-config-set",
+    "file": "systemverilog/basic__uvm-config-set.md",
+    "triggers": [
+      "config"
+    ],
+    "description": "UVM Config Set",
+    "category": "systemverilog",
+    "placeholders": [
+      "INT",
+      "TAB_2",
+      "HIER_PATH",
+      "VAR_NAME"
+    ]
+  },
+  {
+    "id": "basic__uvm-error-macro",
+    "file": "systemverilog/basic__uvm-error-macro.md",
+    "triggers": [
+      "msg",
+      "message"
+    ],
+    "description": "UVM Error Macro",
+    "category": "systemverilog",
+    "placeholders": [
+      "ID",
+      "TAB_2",
+      "MESSAGE"
+    ]
+  },
+  {
+    "id": "basic__uvm-fatal-macro",
+    "file": "systemverilog/basic__uvm-fatal-macro.md",
+    "triggers": [
+      "msg",
+      "message"
+    ],
+    "description": "UVM Fatal Macro",
+    "category": "systemverilog",
+    "placeholders": [
+      "ID",
+      "TAB_2",
+      "MESSAGE"
+    ]
+  },
+  {
+    "id": "basic__uvm-info-macro",
+    "file": "systemverilog/basic__uvm-info-macro.md",
+    "triggers": [
+      "msg",
+      "message"
+    ],
+    "description": "UVM Info Macro",
+    "category": "systemverilog",
+    "placeholders": [
+      "ID",
+      "TAB_2",
+      "MESSAGE",
+      "TAB_4"
+    ]
+  },
+  {
+    "id": "basic__uvm-object",
+    "file": "systemverilog/basic__uvm-object.md",
+    "triggers": [
+      "class"
+    ],
+    "description": "UVM Object",
+    "category": "systemverilog",
+    "placeholders": [
+      "OBJECT",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "basic__uvm-tlm-1-analysis-communication",
+    "file": "systemverilog/basic__uvm-tlm-1-analysis-communication.md",
+    "triggers": [
+      "analysis"
+    ],
+    "description": "UVM TLM-1 Analysis Communication",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1",
+      "INT",
+      "AP"
+    ]
+  },
+  {
+    "id": "basic__uvm-tlm-1-analysis-implementation",
+    "file": "systemverilog/basic__uvm-tlm-1-analysis-implementation.md",
+    "triggers": [
+      "analysis"
+    ],
+    "description": "UVM TLM-1 Analysis Implementation",
+    "category": "systemverilog",
+    "placeholders": [
+      "INT",
+      "CLASS",
+      "IMP"
+    ]
+  },
+  {
+    "id": "basic__uvm-tlm-1-export",
+    "file": "systemverilog/basic__uvm-tlm-1-export.md",
+    "triggers": [
+      "export"
+    ],
+    "description": "UVM TLM-1 Export",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1",
+      "TAB_2",
+      "INT",
+      "EXPORT"
+    ]
+  },
+  {
+    "id": "basic__uvm-tlm-1-fifo",
+    "file": "systemverilog/basic__uvm-tlm-1-fifo.md",
+    "triggers": [
+      "fifo"
+    ],
+    "description": "UVM TLM-1 FIFO",
+    "category": "systemverilog",
+    "placeholders": [
+      "ANALYSIS",
+      "INT",
+      "FIFO"
+    ]
+  },
+  {
+    "id": "basic__uvm-tlm-1-implementation",
+    "file": "systemverilog/basic__uvm-tlm-1-implementation.md",
+    "triggers": [
+      "imp"
+    ],
+    "description": "UVM TLM-1 Implementation",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1",
+      "TAB_2",
+      "INT",
+      "CLASS",
+      "IMP"
+    ]
+  },
+  {
+    "id": "basic__uvm-tlm-1-port",
+    "file": "systemverilog/basic__uvm-tlm-1-port.md",
+    "triggers": [
+      "port"
+    ],
+    "description": "UVM TLM-1 Port",
+    "category": "systemverilog",
+    "placeholders": [
+      "TAB_1",
+      "TAB_2",
+      "INT",
+      "PORT"
+    ]
+  },
+  {
+    "id": "basic__uvm-warning-macro",
+    "file": "systemverilog/basic__uvm-warning-macro.md",
+    "triggers": [
+      "msg",
+      "message"
+    ],
+    "description": "UVM Warning Macro",
+    "category": "systemverilog",
+    "placeholders": [
+      "ID",
+      "TAB_2",
+      "MESSAGE"
+    ]
+  },
+  {
+    "id": "config",
+    "file": "systemverilog/config.md",
+    "triggers": [
+      "Cfg",
+      "Config"
+    ],
+    "description": "UVM Configuration Object",
+    "category": "systemverilog",
+    "placeholders": [
+      "CONFIG",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "DUT_IF",
+      "PARAMS_7",
+      "TAB_8",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "coverage",
+    "file": "systemverilog/coverage.md",
+    "triggers": [
+      "Cov(Col|erageCollector)?"
+    ],
+    "description": "UVM Coverage Collector",
+    "category": "systemverilog",
+    "placeholders": [
+      "COVERAGECOLLECTOR",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "TXN",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "driver",
+    "file": "systemverilog/driver.md",
+    "triggers": [
+      "Drv",
+      "Driver"
+    ],
+    "description": "UVM Driver",
+    "category": "systemverilog",
+    "placeholders": [
+      "DRIVER",
+      "PARAMS_2",
+      "TAB_3",
+      "TXN",
+      "PARAMS_5",
+      "TAB_6",
+      "CONFIG",
+      "PARAMS_8",
+      "TAB_9",
+      "CFG",
+      "DUT_IF",
+      "PARAMS_12",
+      "TAB_13",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "environment__uvm-environment",
+    "file": "systemverilog/environment__uvm-environment.md",
+    "triggers": [
+      "Env(ironment)?"
+    ],
+    "description": "UVM Environment",
+    "category": "systemverilog",
+    "placeholders": [
+      "ENVIRONMENT",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "INTXN",
+      "PARAMS_7",
+      "TAB_8",
+      "OUTTXN",
+      "PARAMS_10",
+      "TAB_11",
+      "CONFIG",
+      "PARAMS_13",
+      "TAB_14",
+      "CFG",
+      "INAGT",
+      "PARAMS_17",
+      "TAB_18",
+      "OUTAGT",
+      "PARAMS_20",
+      "TAB_21",
+      "COV",
+      "PARAMS_23",
+      "TAB_24",
+      "MDL",
+      "PARAMS_26",
+      "TAB_27",
+      "SCB",
+      "PARAMS_29",
+      "TAB_30",
+      "SCBFI",
+      "PARAMS_32",
+      "TAB_33",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "environment__uvm-integrated-environment",
+    "file": "systemverilog/environment__uvm-integrated-environment.md",
+    "triggers": [
+      "Env(ironment)?"
+    ],
+    "description": "UVM Integrated Environment",
+    "category": "systemverilog",
+    "placeholders": [
+      "ENVIRONMENT",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "CONFIG",
+      "PARAMS_7",
+      "TAB_8",
+      "CFG",
+      "ENV0",
+      "PARAMS_11",
+      "TAB_12",
+      "ENV0_13",
+      "ENV1",
+      "PARAMS_15",
+      "TAB_16",
+      "ENV1_17",
+      "VSQR",
+      "PARAMS_19",
+      "TAB_20",
+      "VSQR_21",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "faultinjector",
+    "file": "systemverilog/faultinjector.md",
+    "triggers": [
+      "FaultInjector",
+      "FI"
+    ],
+    "description": "Fault Injector",
+    "category": "systemverilog",
+    "placeholders": [
+      "FAULTINJECTOR",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "TXN",
+      "PARAMS_7",
+      "TAB_8",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "interface",
+    "file": "systemverilog/interface.md",
+    "triggers": [
+      "interface"
+    ],
+    "description": "interface definition",
+    "category": "systemverilog",
+    "placeholders": [
+      "IF_NAME",
+      "PARAMS_2",
+      "CLK",
+      "RST_N",
+      "TAB_5"
+    ]
+  },
+  {
+    "id": "model",
+    "file": "systemverilog/model.md",
+    "triggers": [
+      "Mdl",
+      "RefMdl",
+      "Model",
+      "ReferenceModel"
+    ],
+    "description": "UVM Reference Model",
+    "category": "systemverilog",
+    "placeholders": [
+      "MODEL",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "INTXN",
+      "PARAMS_7",
+      "TAB_8",
+      "OUTTXN",
+      "PARAMS_10",
+      "TAB_11",
+      "CONFIG",
+      "PARAMS_13",
+      "TAB_14",
+      "CFG",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "monitor",
+    "file": "systemverilog/monitor.md",
+    "triggers": [
+      "Mon(itor)?"
+    ],
+    "description": "UVM Monitor",
+    "category": "systemverilog",
+    "placeholders": [
+      "MONITOR",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "TXN",
+      "PARAMS_7",
+      "TAB_8",
+      "CONFIG",
+      "PARAMS_10",
+      "TAB_11",
+      "CFG",
+      "DUT_IF",
+      "PARAMS_14",
+      "TAB_15",
+      "TAB_16",
+      "TAB_17",
+      "TAB_18",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "package",
+    "file": "systemverilog/package.md",
+    "triggers": [
+      "package",
+      "pkg"
+    ],
+    "description": "UVM Component Package Definition",
+    "category": "systemverilog",
+    "placeholders": [
+      "PKG_NAME"
+    ]
+  },
+  {
+    "id": "scoreboard",
+    "file": "systemverilog/scoreboard.md",
+    "triggers": [
+      "Scb",
+      "Scoreboard"
+    ],
+    "description": "UVM Scoreboard",
+    "category": "systemverilog",
+    "placeholders": [
+      "SCOREBOARD",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "INTXN",
+      "PARAMS_7",
+      "TAB_8",
+      "OUTTXN",
+      "PARAMS_10",
+      "TAB_11",
+      "CONFIG",
+      "PARAMS_13",
+      "TAB_14",
+      "CFG",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "sequence__uvm-sequence",
+    "file": "systemverilog/sequence__uvm-sequence.md",
+    "triggers": [
+      "Seq(uence)?"
+    ],
+    "description": "UVM Sequence",
+    "category": "systemverilog",
+    "placeholders": [
+      "SEQUENCE",
+      "PARAMS_2",
+      "TAB_3",
+      "TXN",
+      "PARAMS_5",
+      "TAB_6",
+      "SEQUENCER",
+      "PARAMS_8",
+      "TAB_9",
+      "CONFIG",
+      "PARAMS_11",
+      "TAB_12",
+      "CFG",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "sequence__uvm-virtual-sequence",
+    "file": "systemverilog/sequence__uvm-virtual-sequence.md",
+    "triggers": [
+      "Seq(uence)?"
+    ],
+    "description": "UVM Virtual Sequence",
+    "category": "systemverilog",
+    "placeholders": [
+      "VIRTUALSEQUENCE",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "SEQUENCER",
+      "PARAMS_7",
+      "TAB_8",
+      "CONFIG",
+      "PARAMS_10",
+      "TAB_11",
+      "CFG",
+      "SEQ0",
+      "PARAMS_14",
+      "TAB_15",
+      "SEQ0_16",
+      "SEQ1",
+      "PARAMS_18",
+      "TAB_19",
+      "SEQ1_20",
+      "SQR0",
+      "SQR1",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "sequencer__uvm-sequencer",
+    "file": "systemverilog/sequencer__uvm-sequencer.md",
+    "triggers": [
+      "Sqr",
+      "Sequencer"
+    ],
+    "description": "UVM Sequencer",
+    "category": "systemverilog",
+    "placeholders": [
+      "SEQUENCER",
+      "PARAMS_2",
+      "TAB_3",
+      "TXN",
+      "PARAMS_5",
+      "TAB_6",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "sequencer__uvm-virtual-sequencer",
+    "file": "systemverilog/sequencer__uvm-virtual-sequencer.md",
+    "triggers": [
+      "Sqr",
+      "Sequencer"
+    ],
+    "description": "UVM Virtual Sequencer",
+    "category": "systemverilog",
+    "placeholders": [
+      "VIRTUALSEQUENCER",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "SQR0",
+      "PARAMS_7",
+      "TAB_8",
+      "SQR0_9",
+      "SQR1",
+      "PARAMS_11",
+      "TAB_12",
+      "SQR1_13",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "test__uvm-test",
+    "file": "systemverilog/test__uvm-test.md",
+    "triggers": [
+      "Test"
+    ],
+    "description": "UVM Test",
+    "category": "systemverilog",
+    "placeholders": [
+      "TEST",
+      "CONFIG",
+      "PARAMS_3",
+      "TAB_4",
+      "CFG",
+      "ENV",
+      "PARAMS_7",
+      "TAB_8",
+      "SEQUENCE",
+      "PARAMS_10",
+      "TAB_11"
+    ]
+  },
+  {
+    "id": "test__uvm-test-to-extend",
+    "file": "systemverilog/test__uvm-test-to-extend.md",
+    "triggers": [
+      "Test"
+    ],
+    "description": "UVM Test to Extend",
+    "category": "systemverilog",
+    "placeholders": [
+      "TEST",
+      "BASETEST",
+      "SEQUENCE",
+      "PARAMS_4",
+      "TAB_5"
+    ]
+  },
+  {
+    "id": "test__uvm-test-to-verify-scoreboard",
+    "file": "systemverilog/test__uvm-test-to-verify-scoreboard.md",
+    "triggers": [
+      "Test"
+    ],
+    "description": "UVM Test to Verify Scoreboard",
+    "category": "systemverilog",
+    "placeholders": [
+      "TEST",
+      "BASETEST",
+      "CFG"
+    ]
+  },
+  {
+    "id": "testbench",
+    "file": "systemverilog/testbench.md",
+    "triggers": [
+      "testbench"
+    ],
+    "description": "UVM testbench",
+    "category": "systemverilog",
+    "placeholders": [
+      "DUT",
+      "TAB_2",
+      "CONFIG",
+      "PARAMS_4",
+      "TAB_5",
+      "CFG",
+      "TAB_7",
+      "PARAMS_8",
+      "TAB_9",
+      "PARAMS_10",
+      "TAB_11",
+      "TEST"
+    ]
+  },
+  {
+    "id": "transaction__reload-convert2string-function",
+    "file": "systemverilog/transaction__reload-convert2string-function.md",
+    "triggers": [
+      "do_"
+    ],
+    "description": "Reload convert2string() function",
+    "category": "systemverilog",
+    "placeholders": []
+  },
+  {
+    "id": "transaction__reload-do-compare-function",
+    "file": "systemverilog/transaction__reload-do-compare-function.md",
+    "triggers": [
+      "do_"
+    ],
+    "description": "Reload do_compare() function",
+    "category": "systemverilog",
+    "placeholders": [
+      "TXN",
+      "PROPERTY"
+    ]
+  },
+  {
+    "id": "transaction__reload-do-copy-function",
+    "file": "systemverilog/transaction__reload-do-copy-function.md",
+    "triggers": [
+      "do_"
+    ],
+    "description": "Reload do_copy function",
+    "category": "systemverilog",
+    "placeholders": [
+      "TXN"
+    ]
+  },
+  {
+    "id": "transaction__reload-do-print-function",
+    "file": "systemverilog/transaction__reload-do-print-function.md",
+    "triggers": [
+      "do_"
+    ],
+    "description": "Reload do_print() function",
+    "category": "systemverilog",
+    "placeholders": []
+  },
+  {
+    "id": "transaction__uvm-transaction",
+    "file": "systemverilog/transaction__uvm-transaction.md",
+    "triggers": [
+      "Txn",
+      "Transaction"
+    ],
+    "description": "UVM Transaction",
+    "category": "systemverilog",
+    "placeholders": [
+      "TXN",
+      "PARAMS_2",
+      "TAB_3",
+      "PARAMS_4",
+      "TAB_5",
+      "PARAM_SUFFIX"
+    ]
+  },
+  {
+    "id": "questa_10.6c_sim",
+    "file": "tcl/questa_10.6c_sim.md",
+    "triggers": [
+      "simulate"
+    ],
+    "description": "QuestaSim 10.6c UVM simulation script",
+    "category": "tcl",
+    "placeholders": [
+      "TAB_2",
+      "TB_NAME",
+      "BASETEST",
+      "TAB_5"
+    ]
+  },
+  {
+    "id": "questa_2024.2_sim",
+    "file": "tcl/questa_2024.2_sim.md",
+    "triggers": [
+      "simulate"
+    ],
+    "description": "QuestaSim 2024.2.1 UVM simulation script",
+    "category": "tcl",
+    "placeholders": [
+      "TAB_2",
+      "TB_NAME",
+      "BASETEST",
+      "TAB_5"
+    ]
+  },
+  {
+    "id": "questa_rpt",
+    "file": "tcl/questa_rpt.md",
+    "triggers": [
+      "report"
+    ],
+    "description": "QuestaSim UVM Report Script",
+    "category": "tcl",
+    "placeholders": []
+  }
+]
