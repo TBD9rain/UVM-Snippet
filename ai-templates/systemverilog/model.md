@@ -13,7 +13,7 @@ placeholders:
     default: "Model"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -56,48 +56,48 @@ placeholders:
 ```systemverilog
 class {{MODEL}}{{PARAMS_2}} extends uvm_component;
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{MODEL}}{{PARAMS_4}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{MODEL}}{{PARAMS_4}})
 
-	//  variable definition
-	typedef {{INTXN}}{{PARAMS_7}} ITXN;
-	typedef {{OUTTXN}}{{PARAMS_10}} OTXN;
+    //  variable definition
+    typedef {{INTXN}}{{PARAMS_7}} ITXN;
+    typedef {{OUTTXN}}{{PARAMS_10}} OTXN;
 
-	{{CONFIG}}{{PARAMS_13}} {{CFG}};
+    {{CONFIG}}{{PARAMS_13}} {{CFG}};
 
-	uvm_blocking_get_port #(ITXN) imon_getp;
-	uvm_blocking_put_port #(OTXN) scb_putp;
+    uvm_blocking_get_port #(ITXN) imon_getp;
+    uvm_blocking_put_port #(OTXN) scb_putp;
 
-	function new(string name="{{MODEL}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{MODEL}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		if (!uvm_config_db #({{CONFIG}}{{PARAMS_13}})::get(this, "", "{{CFG}}", {{CFG}})) begin
-			`uvm_fatal("{{MODEL}}", "configuration is not set.")
-		end
+        if (!uvm_config_db #({{CONFIG}}{{PARAMS_13}})::get(this, "", "{{CFG}}", {{CFG}})) begin
+            `uvm_fatal("{{MODEL}}", "configuration is not set.")
+        end
 
-		imon_getp = new("imon_getp", this);
-		scb_putp = new("scb_putp", this);
-	endfunction
+        imon_getp = new("imon_getp", this);
+        scb_putp = new("scb_putp", this);
+    endfunction
 
-	task main_phase(uvm_phase phase);
-		ITXN mon_txn;
-		OTXN exp_txn;
+    task main_phase(uvm_phase phase);
+        ITXN mon_txn;
+        OTXN exp_txn;
 
-		forever begin
-			imon_getp.get(mon_txn);
-			ref_proc(mon_txn, exp_txn);
-			scb_putp.put(exp_txn);
-		end
-	endtask
+        forever begin
+            imon_getp.get(mon_txn);
+            ref_proc(mon_txn, exp_txn);
+            scb_putp.put(exp_txn);
+        end
+    endtask
 
-	task ref_proc(
-		const ref ITXN in_txn,
-		output OTXN out_txn);
+    task ref_proc(
+        const ref ITXN in_txn,
+        output OTXN out_txn);
 
-		out_txn = OTXN::type_id::create("out_txn");
-	endtask
+        out_txn = OTXN::type_id::create("out_txn");
+    endtask
 endclass
 ```

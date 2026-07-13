@@ -13,7 +13,7 @@ placeholders:
     default: "VirtualSequencer"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -51,13 +51,13 @@ placeholders:
 ```systemverilog
 class {{VIRTUALSEQUENCER}}{{PARAMS_2}} extends uvm_sequencer;
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{VIRTUALSEQUENCER}}{{PARAMS_4}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{VIRTUALSEQUENCER}}{{PARAMS_4}})
 
-	{{SQR0}}{{PARAMS_7}} {{SQR0_9}};
-	{{SQR1}}{{PARAMS_11}} {{SQR1_13}};
+    {{SQR0}}{{PARAMS_7}} {{SQR0_9}};
+    {{SQR1}}{{PARAMS_11}} {{SQR1_13}};
 
-	function new(string name="{{VIRTUALSEQUENCER}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{VIRTUALSEQUENCER}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 endclass
 ```

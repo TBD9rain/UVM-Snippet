@@ -45,7 +45,7 @@ placeholders:
     default: "Agent"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "PARAM_SUFFIX"
     derived: true
     rule: "\"_param\" if PARAMS_2 is set (class is parameterized), else \"\""
@@ -56,6 +56,10 @@ class {{AGENT}}{{PARAMS_2}} extends uvm_agent;
     ...
 ```
 ```
+
+Template bodies are indented with **4 spaces** (the converter expands the source
+tabs). The one exception is the `make` category, whose recipe lines keep the
+literal tabs GNU make requires.
 
 ## Frontmatter fields
 

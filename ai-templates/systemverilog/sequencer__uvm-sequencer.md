@@ -13,7 +13,7 @@ placeholders:
     default: "Sequencer"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "TXN"
@@ -32,10 +32,10 @@ placeholders:
 ```systemverilog
 class {{SEQUENCER}}{{PARAMS_2}} extends uvm_sequencer #(.REQ ({{TXN}}));
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{SEQUENCER}}{{PARAMS_5}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{SEQUENCER}}{{PARAMS_5}})
 
-	function new(string name="{{SEQUENCER}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{SEQUENCER}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 endclass
 ```

@@ -13,7 +13,7 @@ placeholders:
     default: "Sequence"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "TXN"
@@ -51,35 +51,35 @@ placeholders:
 ```systemverilog
 class {{SEQUENCE}}{{PARAMS_2}} extends uvm_sequence #(.REQ ({{TXN}}));
 
-	`uvm_object{{PARAM_SUFFIX}}_utils({{SEQUENCE}}{{PARAMS_5}})
+    `uvm_object{{PARAM_SUFFIX}}_utils({{SEQUENCE}}{{PARAMS_5}})
 
-	//  handler to sequencer
-	`uvm_declare_p_sequencer({{SEQUENCER}}{{PARAMS_8}})
+    //  handler to sequencer
+    `uvm_declare_p_sequencer({{SEQUENCER}}{{PARAMS_8}})
 
-	{{CONFIG}}{{PARAMS_11}} {{CFG}};
+    {{CONFIG}}{{PARAMS_11}} {{CFG}};
 
-	function new(string name="{{SEQUENCE}}");
-		super.new(name);
-	endfunction
+    function new(string name="{{SEQUENCE}}");
+        super.new(name);
+    endfunction
 
-	virtual task pre_start();
-		super.pre_start();
+    virtual task pre_start();
+        super.pre_start();
 
-		if (!uvm_config_db #({{CONFIG}}{{PARAMS_11}})::get(p_sequencer, "", "{{CFG}}", {{CFG}})) begin
-			`uvm_fatal("{{SEQUENCE}}", "configuration is not set.")
-		end
-	endtask
+        if (!uvm_config_db #({{CONFIG}}{{PARAMS_11}})::get(p_sequencer, "", "{{CFG}}", {{CFG}})) begin
+            `uvm_fatal("{{SEQUENCE}}", "configuration is not set.")
+        end
+    endtask
 
-	virtual task body();
-		REQ txn;
+    virtual task body();
+        REQ txn;
 
-		txn = REQ::type_id::create("txn");
-		//  transaction send request
-		start_item(txn);
-		//  transaction prepare
+        txn = REQ::type_id::create("txn");
+        //  transaction send request
+        start_item(txn);
+        //  transaction prepare
 
-		//  transaction send
-		finish_item(txn);
-	endtask
+        //  transaction send
+        finish_item(txn);
+    endtask
 endclass
 ```

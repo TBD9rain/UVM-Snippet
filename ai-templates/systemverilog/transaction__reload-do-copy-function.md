@@ -15,16 +15,16 @@ placeholders:
 
 ```systemverilog
 virtual function void do_copy(uvm_object rhs);
-	//  called by copy() function
+    //  called by copy() function
 
-	{{TXN}} rhs_;
-	if(!$cast(rhs_, rhs)) begin
-		`uvm_fatal("{{TXN}}", "do_copy type conversion failed.")
-	end
+    {{TXN}} rhs_;
+    if(!$cast(rhs_, rhs)) begin
+        `uvm_fatal("{{TXN}}", "do_copy type conversion failed.")
+    end
 
-	super.do_copy(rhs);
+    super.do_copy(rhs);
 
-	//  this class property copy
-	
+    //  this class property copy
+    
 endfunction
 ```

@@ -13,7 +13,7 @@ placeholders:
     default: "Object"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -29,20 +29,20 @@ placeholders:
 ```systemverilog
 class {{OBJECT}}{{PARAMS_2}} extends uvm_object;
 
-	`uvm_object{{PARAM_SUFFIX}}_utils({{OBJECT}}{{PARAMS_4}})
+    `uvm_object{{PARAM_SUFFIX}}_utils({{OBJECT}}{{PARAMS_4}})
 
-	//----------
-	//  Variable
-	//----------
+    //----------
+    //  Variable
+    //----------
 
 
 
-	//--------
-	//  Method
-	//--------
+    //--------
+    //  Method
+    //--------
 
-	function new(string name="{{OBJECT}}");
-		super.new(name);
-	endfunction
+    function new(string name="{{OBJECT}}");
+        super.new(name);
+    endfunction
 endclass
 ```

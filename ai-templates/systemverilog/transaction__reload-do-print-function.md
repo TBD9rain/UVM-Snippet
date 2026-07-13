@@ -12,8 +12,8 @@ placeholders: []
 
 ```systemverilog
 virtual function void do_print(uvm_printer printer);
-	//  called by sprint()
+    //  called by sprint()
 
-	printer.m_string = convert2string();
+    printer.m_string = convert2string();
 endfunction
 ```

@@ -21,6 +21,6 @@ placeholders:
 
 ```systemverilog
 {{LABEL}}{{LABEL_SEP}}coverpoint {{VAR_NAME}} {
-	//  bins definition
+    //  bins definition
 }
 ```

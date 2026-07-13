@@ -16,10 +16,10 @@ placeholders:
 ```systemverilog
 class {{CLS_NAME}};
 
-	
+    
 
-	function new;
-	endfunction
+    function new;
+    endfunction
 
 endclass
 ```

@@ -18,15 +18,15 @@ placeholders:
 
 ```systemverilog
 virtual function bit do_compare(uvm_object rhs, uvm_comparer comparer);
-	//  called by compare() function
+    //  called by compare() function
 
-	{{TXN}} rhs_;
-	do_compare = super.do_compare(rhs, comparer);
-	if(!$cast(rhs_, rhs)) begin
-		`uvm_fatal("{{TXN}}", "do_compare type conversion failed.")
-	end
+    {{TXN}} rhs_;
+    do_compare = super.do_compare(rhs, comparer);
+    if(!$cast(rhs_, rhs)) begin
+        `uvm_fatal("{{TXN}}", "do_compare type conversion failed.")
+    end
 
-	//  this class property compare
-	do_compare &= (this.{{PROPERTY}} === rhs_.{{PROPERTY}});
+    //  this class property compare
+    do_compare &= (this.{{PROPERTY}} === rhs_.{{PROPERTY}});
 endfunction
 ```

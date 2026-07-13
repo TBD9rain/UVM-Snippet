@@ -13,7 +13,7 @@ placeholders:
     default: "Config"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -37,37 +37,37 @@ placeholders:
 ```systemverilog
 class {{CONFIG}}{{PARAMS_2}} extends uvm_object;
 
-	`uvm_object{{PARAM_SUFFIX}}_utils({{CONFIG}}{{PARAMS_4}})
+    `uvm_object{{PARAM_SUFFIX}}_utils({{CONFIG}}{{PARAMS_4}})
 
-	//----------
-	//  Variable
-	//----------
+    //----------
+    //  Variable
+    //----------
 
-	//  virtual interface
-	virtual {{DUT_IF}}{{PARAMS_7}} vif;
+    //  virtual interface
+    virtual {{DUT_IF}}{{PARAMS_7}} vif;
 
-	//  drive enable
-	uvm_active_passive_enum drv_en = UVM_ACTIVE;
+    //  drive enable
+    uvm_active_passive_enum drv_en = UVM_ACTIVE;
 
-	//  result check enable
-	bit scb_en = 0;
+    //  result check enable
+    bit scb_en = 0;
 
-	//  fault inject enable
-	bit fault_inject_en = 0;
+    //  fault inject enable
+    bit fault_inject_en = 0;
 
-	//  coverage collect enable
-	bit cov_en = 0;
+    //  coverage collect enable
+    bit cov_en = 0;
 
-	//  reference latency
-	int unsigned ref_latency = 0;
+    //  reference latency
+    int unsigned ref_latency = 0;
 
 
-	//--------
-	//  Method
-	//--------
+    //--------
+    //  Method
+    //--------
 
-	function new(string name="{{CONFIG}}");
-		super.new(name);
-	endfunction
+    function new(string name="{{CONFIG}}");
+        super.new(name);
+    endfunction
 endclass
 ```

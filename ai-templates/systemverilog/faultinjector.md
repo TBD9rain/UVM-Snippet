@@ -13,7 +13,7 @@ placeholders:
     default: "FaultInjector"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -37,37 +37,37 @@ placeholders:
 ```systemverilog
 class {{FAULTINJECTOR}}{{PARAMS_2}} extends uvm_component;
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{FAULTINJECTOR}}{{PARAMS_4}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{FAULTINJECTOR}}{{PARAMS_4}})
 
-	//  variable definition
-	typedef {{TXN}}{{PARAMS_7}} TXN;
+    //  variable definition
+    typedef {{TXN}}{{PARAMS_7}} TXN;
 
-	uvm_analysis_imp #(TXN, {{FAULTINJECTOR}}{{PARAMS_4}}) imp;
-	uvm_analysis_port #(TXN) ap;
+    uvm_analysis_imp #(TXN, {{FAULTINJECTOR}}{{PARAMS_4}}) imp;
+    uvm_analysis_port #(TXN) ap;
 
-	function new(string name="{{FAULTINJECTOR}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{FAULTINJECTOR}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		imp = new("imp", this);
-		ap = new("ap", this);
-	endfunction
+        imp = new("imp", this);
+        ap = new("ap", this);
+    endfunction
 
-	virtual function void fault_inject(TXN txn);
-	endfunction
+    virtual function void fault_inject(TXN txn);
+    endfunction
 
-	virtual function void write(TXN txn);
-		TXN insert_txn;
+    virtual function void write(TXN txn);
+        TXN insert_txn;
 
-		insert_txn = TXN::type_id::create("insert_txn");
-		insert_txn.copy(txn);
+        insert_txn = TXN::type_id::create("insert_txn");
+        insert_txn.copy(txn);
 
-		fault_inject(insert_txn);
+        fault_inject(insert_txn);
 
-		ap.write(insert_txn);
-	endfunction
+        ap.write(insert_txn);
+    endfunction
 endclass
 ```

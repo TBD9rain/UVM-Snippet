@@ -13,7 +13,7 @@ placeholders:
     default: "Monitor"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -65,52 +65,52 @@ placeholders:
 ```systemverilog
 class {{MONITOR}}{{PARAMS_2}} extends uvm_monitor;
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{MONITOR}}{{PARAMS_4}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{MONITOR}}{{PARAMS_4}})
 
-	//  variable definition
-	typedef {{TXN}}{{PARAMS_7}} TXN;
+    //  variable definition
+    typedef {{TXN}}{{PARAMS_7}} TXN;
 
-	{{CONFIG}}{{PARAMS_10}} {{CFG}};
+    {{CONFIG}}{{PARAMS_10}} {{CFG}};
 
-	virtual {{DUT_IF}}{{PARAMS_14}}.mon_mp vif;
+    virtual {{DUT_IF}}{{PARAMS_14}}.mon_mp vif;
 
-	uvm_analysis_port #(TXN) ap;
+    uvm_analysis_port #(TXN) ap;
 
-	function new(string name="{{MONITOR}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{MONITOR}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		if (!uvm_config_db #({{CONFIG}}{{PARAMS_10}})::get(this, "", "{{CFG}}", {{CFG}})) begin
-			`uvm_fatal("{{MONITOR}}", "configuration is not set.")
-		end
-		vif = {{CFG}}.vif;
+        if (!uvm_config_db #({{CONFIG}}{{PARAMS_10}})::get(this, "", "{{CFG}}", {{CFG}})) begin
+            `uvm_fatal("{{MONITOR}}", "configuration is not set.")
+        end
+        vif = {{CFG}}.vif;
 
-		ap = new("ap", this);
-	endfunction
+        ap = new("ap", this);
+    endfunction
 
-	task main_phase(uvm_phase phase);
-		TXN txn;
+    task main_phase(uvm_phase phase);
+        TXN txn;
 
-		forever begin
-			sample_txn(txn);
-			ap.write(txn);
-		end
-	endtask
+        forever begin
+            sample_txn(txn);
+            ap.write(txn);
+        end
+    endtask
 
-	task sample_txn;
-		output TXN txn;
+    task sample_txn;
+        output TXN txn;
 
-		txn = TXN::type_id::create("txn");
+        txn = TXN::type_id::create("txn");
 
-		//  sample until the condition holds (use "===" / "!==")
-		while ({{TAB_16}}) begin
-			@({{TAB_17}} vif.clk);
-		end
-		txn.timestamp = vif.clk_cnt;
-		@({{TAB_18}} vif.clk);
-	endtask
+        //  sample until the condition holds (use "===" / "!==")
+        while ({{TAB_16}}) begin
+            @({{TAB_17}} vif.clk);
+        end
+        txn.timestamp = vif.clk_cnt;
+        @({{TAB_18}} vif.clk);
+    endtask
 endclass
 ```

@@ -252,12 +252,14 @@ def assign_names(defs):
     return names
 
 
-def render(nodes, names, derived) -> str:
+def render(nodes, names, derived, expand_tabs=True) -> str:
     out: list[str] = []
     for node in nodes:
         tag = node[0]
         if tag == "lit":
-            out.append(node[1])
+            # Expand tab indentation to 4 spaces, except for Makefiles, whose
+            # recipe lines require a literal tab (caller passes expand_tabs=False).
+            out.append(node[1].replace("\t", "    ") if expand_tabs else node[1])
         elif tag == "cursor":
             pass  # drop the final-cursor marker
         elif tag in ("mirror", "tabempty", "tab", "choice"):
@@ -349,7 +351,7 @@ def _yaml_list(items):
     return "[" + ", ".join(json.dumps(x) for x in items) + "]"
 
 
-def build_placeholders(defs, names, derived):
+def build_placeholders(defs, names, derived, expand_tabs=True):
     """Produce the ordered placeholder metadata list for the frontmatter."""
     entries = []
     for num in sorted(defs):
@@ -365,7 +367,7 @@ def build_placeholders(defs, names, derived):
                 entry["derived"] = True
                 entry["note"] = "defaults to the snippet source file base name"
             elif ast is not None:
-                rendered = render(ast, names, {})
+                rendered = render(ast, names, {}, expand_tabs)
                 if rendered:
                     entry["default"] = rendered
         entries.append(entry)
@@ -458,8 +460,10 @@ def main() -> int:
             collect_defs(ast, defs)
             names = assign_names(defs)
             derived: dict = {}
-            body = render(ast, names, derived)
-            placeholders = build_placeholders(defs, names, derived)
+            # Makefiles need literal tabs; everything else uses 4-space indent.
+            expand_tabs = category != "make"
+            body = render(ast, names, derived, expand_tabs)
+            placeholders = build_placeholders(defs, names, derived, expand_tabs)
 
             base = f"{stem}__{_slugify(block['description'])}" if multi else stem
             seen = used_bases.setdefault(category, set())

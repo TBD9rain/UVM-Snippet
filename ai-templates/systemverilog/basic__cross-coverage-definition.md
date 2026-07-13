@@ -21,6 +21,6 @@ placeholders:
 
 ```systemverilog
 {{LABEL}}{{LABEL_SEP}}cross {{TAB_2}} {
-	//  bins definition
+    //  bins definition
 }
 ```

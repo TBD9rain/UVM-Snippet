@@ -24,15 +24,15 @@ placeholders:
 
 ```systemverilog
 covergroup {{COVERGROUP_NAME}}{{TAB_2}};
-	//  type option
-	type_option.merge_instances = 0;    //  0: weighted average; 1: merge identical bins from instances
-	//  inst option
-	option.auto_bin_max = 64;
-	option.get_inst_coverage = 0;   //  1: enable tracking of each instance when merge_instances is set
+    //  type option
+    type_option.merge_instances = 0;    //  0: weighted average; 1: merge identical bins from instances
+    //  inst option
+    option.auto_bin_max = 64;
+    option.get_inst_coverage = 0;   //  1: enable tracking of each instance when merge_instances is set
 
-	//  coverage point definition
+    //  coverage point definition
 
-	//  cross coverage definition
+    //  cross coverage definition
 
 endgroup
 ```

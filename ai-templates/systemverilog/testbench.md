@@ -30,12 +30,12 @@ placeholders:
     default: "{{DUT}}_if"
   - name: "PARAMS_8"
     tabstop: 8
-    default: " #(\n\t{{TAB_9}}\n)"
+    default: " #(\n    {{TAB_9}}\n)"
   - name: "TAB_9"
     tabstop: 9
   - name: "PARAMS_10"
     tabstop: 10
-    default: " #(\n\t{{TAB_11}}\n)"
+    default: " #(\n    {{TAB_11}}\n)"
   - name: "TAB_11"
     tabstop: 11
   - name: "TEST"
@@ -77,8 +77,8 @@ bit rst_n = 0;
 
 {{TAB_7}}{{PARAMS_8}}
 tb_if (
-	.clk    (clk),
-	.rst_n  (rst_n)
+    .clk    (clk),
+    .rst_n  (rst_n)
 );
 
 
@@ -96,33 +96,33 @@ u_dut();
 
 //  clock generator
 initial begin
-	forever begin
-		#(CLK_HALF_PERIOD);
-		clk = ~clk;
-	end
+    forever begin
+        #(CLK_HALF_PERIOD);
+        clk = ~clk;
+    end
 end
 
 initial begin
-	rst_n = 1'b0;
-	#1000;
-	rst_n = 1'b1;
+    rst_n = 1'b0;
+    #1000;
+    rst_n = 1'b1;
 end
 
 initial begin
-	$write("\n*****************************\n");
-	$write("Running UVM version: %s\n", `UVM_VERSION_STRING);
-	$write("*****************************\n\n");
+    $write("\n*****************************\n");
+    $write("Running UVM version: %s\n", `UVM_VERSION_STRING);
+    $write("*****************************\n\n");
 end
 
 initial begin
-	{{CFG}} = {{CONFIG}}{{PARAMS_4}}::type_id::create("{{CFG}}");
-	{{CFG}}.vif = tb_if;
+    {{CFG}} = {{CONFIG}}{{PARAMS_4}}::type_id::create("{{CFG}}");
+    {{CFG}}.vif = tb_if;
 
-	uvm_config_db #({{CONFIG}}{{PARAMS_4}})::set(null, "uvm_test_top", "{{CFG}}", {{CFG}});
+    uvm_config_db #({{CONFIG}}{{PARAMS_4}})::set(null, "uvm_test_top", "{{CFG}}", {{CFG}});
 end
 
 initial begin
-	run_test("{{TEST}}");
+    run_test("{{TEST}}");
 end
 
 endmodule

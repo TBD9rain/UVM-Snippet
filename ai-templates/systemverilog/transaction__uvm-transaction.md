@@ -13,7 +13,7 @@ placeholders:
     default: "Txn"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -29,31 +29,31 @@ placeholders:
 ```systemverilog
 class {{TXN}}{{PARAMS_2}} extends uvm_sequence_item;
 
-	//----------
-	//  Variable
-	//----------
+    //----------
+    //  Variable
+    //----------
 
-	//  Use bit for input, logic for output
+    //  Use bit for input, logic for output
 
-	//  time stamp
-	longint unsigned timestamp = 0;
-
-
-	//----------
-	//  Registry
-	//----------
-
-	`uvm_object{{PARAM_SUFFIX}}_utils_begin({{TXN}}{{PARAMS_4}})
-		`uvm_field_int(timestamp, UVM_ALL_ON | UVM_NOCOMPARE)
-	`uvm_object_utils_end
+    //  time stamp
+    longint unsigned timestamp = 0;
 
 
-	//--------
-	//  Method
-	//--------
+    //----------
+    //  Registry
+    //----------
 
-	function new(string name="{{TXN}}");
-		super.new(name);
-	endfunction
+    `uvm_object{{PARAM_SUFFIX}}_utils_begin({{TXN}}{{PARAMS_4}})
+        `uvm_field_int(timestamp, UVM_ALL_ON | UVM_NOCOMPARE)
+    `uvm_object_utils_end
+
+
+    //--------
+    //  Method
+    //--------
+
+    function new(string name="{{TXN}}");
+        super.new(name);
+    endfunction
 endclass
 ```

@@ -13,7 +13,7 @@ placeholders:
     default: "Agent"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -72,49 +72,49 @@ placeholders:
 ```systemverilog
 class {{AGENT}}{{PARAMS_2}} extends uvm_agent;
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{AGENT}}{{PARAMS_4}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{AGENT}}{{PARAMS_4}})
 
-	//  variable definition
-	typedef {{TXN}}{{PARAMS_7}} TXN;
+    //  variable definition
+    typedef {{TXN}}{{PARAMS_7}} TXN;
 
-	{{CONFIG}}{{PARAMS_10}} {{CFG}};
+    {{CONFIG}}{{PARAMS_10}} {{CFG}};
 
-	{{SQR}}{{PARAMS_14}} sqr;
-	{{DRV}}{{PARAMS_17}} drv;
-	{{MON}}{{PARAMS_20}} mon;
+    {{SQR}}{{PARAMS_14}} sqr;
+    {{DRV}}{{PARAMS_17}} drv;
+    {{MON}}{{PARAMS_20}} mon;
 
-	uvm_analysis_port #(TXN) ap;
+    uvm_analysis_port #(TXN) ap;
 
-	function new(string name="{{AGENT}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{AGENT}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		if (!uvm_config_db #({{CONFIG}}{{PARAMS_10}})::get(this, "", "{{CFG}}", {{CFG}})) begin
-			`uvm_fatal("{{AGENT}}", "configuration is not set.")
-		end
-		is_active = {{CFG}}.drv_en;
+        if (!uvm_config_db #({{CONFIG}}{{PARAMS_10}})::get(this, "", "{{CFG}}", {{CFG}})) begin
+            `uvm_fatal("{{AGENT}}", "configuration is not set.")
+        end
+        is_active = {{CFG}}.drv_en;
 
-		if (is_active == UVM_ACTIVE) begin
-			sqr = {{SQR}}{{PARAMS_14}}::type_id::create("sqr", this);
-			drv = {{DRV}}{{PARAMS_17}}::type_id::create("drv", this);
-			uvm_config_db #({{CONFIG}}{{PARAMS_10}})::set(this, "sqr", "{{CFG}}", {{CFG}});
-			uvm_config_db #({{CONFIG}}{{PARAMS_10}})::set(this, "drv", "{{CFG}}", {{CFG}});
-		end
-		mon = {{MON}}{{PARAMS_20}}::type_id::create("mon", this);
-		uvm_config_db #({{CONFIG}}{{PARAMS_10}})::set(this, "mon", "{{CFG}}", {{CFG}});
-		ap = new("ap", this);
-	endfunction
+        if (is_active == UVM_ACTIVE) begin
+            sqr = {{SQR}}{{PARAMS_14}}::type_id::create("sqr", this);
+            drv = {{DRV}}{{PARAMS_17}}::type_id::create("drv", this);
+            uvm_config_db #({{CONFIG}}{{PARAMS_10}})::set(this, "sqr", "{{CFG}}", {{CFG}});
+            uvm_config_db #({{CONFIG}}{{PARAMS_10}})::set(this, "drv", "{{CFG}}", {{CFG}});
+        end
+        mon = {{MON}}{{PARAMS_20}}::type_id::create("mon", this);
+        uvm_config_db #({{CONFIG}}{{PARAMS_10}})::set(this, "mon", "{{CFG}}", {{CFG}});
+        ap = new("ap", this);
+    endfunction
 
-	function void connect_phase(uvm_phase phase);
-		super.connect_phase(phase);
+    function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
 
-		if (is_active == UVM_ACTIVE) begin
-			drv.seq_item_port.connect(sqr.seq_item_export);
-		end
-		mon.ap.connect(ap);
-	endfunction
+        if (is_active == UVM_ACTIVE) begin
+            drv.seq_item_port.connect(sqr.seq_item_export);
+        end
+        mon.ap.connect(ap);
+    endfunction
 endclass
 ```

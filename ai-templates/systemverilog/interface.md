@@ -28,55 +28,55 @@ placeholders:
 
 ```systemverilog
 interface {{IF_NAME}}{{PARAMS_2}} (
-	input logic {{CLK}},
-	input logic {{RST_N}});
+    input logic {{CLK}},
+    input logic {{RST_N}});
 
-	//  DUT IO port
-	logic data_in_vld;
-	logic [ 7: 0] data_in;
+    //  DUT IO port
+    logic data_in_vld;
+    logic [ 7: 0] data_in;
 
-	logic data_out_vld;
-	logic [ 7: 0] data_out;
+    logic data_out_vld;
+    logic [ 7: 0] data_out;
 
-	//  clock counter for time stamp
-	longint unsigned clk_cnt = 0;
+    //  clock counter for time stamp
+    longint unsigned clk_cnt = 0;
 
-	always_ff @({{TAB_5}} {{CLK}}) begin
-		clk_cnt <= clk_cnt + 1;
-	end
+    always_ff @({{TAB_5}} {{CLK}}) begin
+        clk_cnt <= clk_cnt + 1;
+    end
 
-	clocking cb @({{TAB_5}} {{CLK}});
-		output data_in_vld;
-		output data_in;
-	endclocking
+    clocking cb @({{TAB_5}} {{CLK}});
+        output data_in_vld;
+        output data_in;
+    endclocking
 
-	//  driver
-	modport drv_mp (
-		clocking cb,
-		input {{RST_N}});
+    //  driver
+    modport drv_mp (
+        clocking cb,
+        input {{RST_N}});
 
-	//  monitor
-	modport mon_mp (
-		input {{CLK}},
-		input {{RST_N}},
+    //  monitor
+    modport mon_mp (
+        input {{CLK}},
+        input {{RST_N}},
 
-		input data_in_vld,
-		input data_in,
+        input data_in_vld,
+        input data_in,
 
-		input data_out_vld,
-		input data_out,
+        input data_out_vld,
+        input data_out,
 
-		input clk_cnt);
+        input clk_cnt);
 
-	//  DUT
-	modport dut_mp (
-		input {{CLK}},
-		input {{RST_N}},
+    //  DUT
+    modport dut_mp (
+        input {{CLK}},
+        input {{RST_N}},
 
-		input data_in_vld,
-		input data_in,
+        input data_in_vld,
+        input data_in,
 
-		output data_out_vld,
-		output data_out);
+        output data_out_vld,
+        output data_out);
 endinterface
 ```

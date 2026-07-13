@@ -27,31 +27,31 @@ placeholders:
 ```systemverilog
 class {{TEST}} extends {{BASETEST}};
 
-	`uvm_component_utils({{TEST}})
+    `uvm_component_utils({{TEST}})
 
-	//  variable definition
-	function new(string name="{{TEST}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    //  variable definition
+    function new(string name="{{TEST}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	virtual function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    virtual function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		set_report_verbosity_level_hier(UVM_LOW);
-	endfunction
+        set_report_verbosity_level_hier(UVM_LOW);
+    endfunction
 
-	virtual task main_phase(uvm_phase phase);
-		{{SEQUENCE}}{{PARAMS_4}} seq;
+    virtual task main_phase(uvm_phase phase);
+        {{SEQUENCE}}{{PARAMS_4}} seq;
 
-		phase.raise_objection(this);
+        phase.raise_objection(this);
 
-		//  control sequence start
-		seq = {{SEQUENCE}}{{PARAMS_4}}::type_id::create("seq");
-		seq.start(env.i_agt.sqr);
+        //  control sequence start
+        seq = {{SEQUENCE}}{{PARAMS_4}}::type_id::create("seq");
+        seq.start(env.i_agt.sqr);
 
-		//  delay before drop objection
-		phase.phase_done.set_drain_time(this, 1000ns);
-		phase.drop_objection(this);
-	endtask
+        //  delay before drop objection
+        phase.phase_done.set_drain_time(this, 1000ns);
+        phase.drop_objection(this);
+    endtask
 endclass
 ```

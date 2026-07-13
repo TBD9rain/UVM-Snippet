@@ -13,7 +13,7 @@ placeholders:
     default: "Environment"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -104,106 +104,106 @@ placeholders:
 ```systemverilog
 class {{ENVIRONMENT}}{{PARAMS_2}} extends uvm_env;
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{ENVIRONMENT}}{{PARAMS_4}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{ENVIRONMENT}}{{PARAMS_4}})
 
-	//  variable definition
-	typedef {{INTXN}}{{PARAMS_7}} ITXN;
-	typedef {{OUTTXN}}{{PARAMS_10}} OTXN;
+    //  variable definition
+    typedef {{INTXN}}{{PARAMS_7}} ITXN;
+    typedef {{OUTTXN}}{{PARAMS_10}} OTXN;
 
-	{{CONFIG}}{{PARAMS_13}} {{CFG}};
+    {{CONFIG}}{{PARAMS_13}} {{CFG}};
 
-	{{INAGT}}{{PARAMS_17}} i_agt;
-	{{OUTAGT}}{{PARAMS_20}} o_agt;
-	{{COV}}{{PARAMS_23}} cov;
-	{{MDL}}{{PARAMS_26}} mdl;
-	{{SCB}}{{PARAMS_29}} scb;
-	{{SCBFI}}{{PARAMS_32}} fi;
+    {{INAGT}}{{PARAMS_17}} i_agt;
+    {{OUTAGT}}{{PARAMS_20}} o_agt;
+    {{COV}}{{PARAMS_23}} cov;
+    {{MDL}}{{PARAMS_26}} mdl;
+    {{SCB}}{{PARAMS_29}} scb;
+    {{SCBFI}}{{PARAMS_32}} fi;
 
-	bit scb_en = 0;
-	bit fault_inject_en = 0;
-	bit cov_en = 0;
-	int unsigned ref_latency = 0;
+    bit scb_en = 0;
+    bit fault_inject_en = 0;
+    bit cov_en = 0;
+    int unsigned ref_latency = 0;
 
-	uvm_tlm_analysis_fifo #(ITXN) cov_sti_fifo;
-	uvm_tlm_analysis_fifo #(ITXN) mdl_sti_fifo;
-	uvm_tlm_analysis_fifo #(ITXN) scb_sti_fifo;
-	uvm_tlm_analysis_fifo #(OTXN) scb_obs_fifo;
-	uvm_tlm_fifo #(OTXN) scb_exp_fifo;
+    uvm_tlm_analysis_fifo #(ITXN) cov_sti_fifo;
+    uvm_tlm_analysis_fifo #(ITXN) mdl_sti_fifo;
+    uvm_tlm_analysis_fifo #(ITXN) scb_sti_fifo;
+    uvm_tlm_analysis_fifo #(OTXN) scb_obs_fifo;
+    uvm_tlm_fifo #(OTXN) scb_exp_fifo;
 
-	function new(string name="{{ENVIRONMENT}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{ENVIRONMENT}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		if (!uvm_config_db #({{CONFIG}}{{PARAMS_13}})::get(this, "", "{{CFG}}", {{CFG}})) begin
-			`uvm_fatal("{{ENVIRONMENT}}", "configuration is not set.")
-		end
-		scb_en = {{CFG}}.scb_en;
-		fault_inject_en = {{CFG}}.fault_inject_en;
-		cov_en = {{CFG}}.cov_en;
-		ref_latency = {{CFG}}.ref_latency;
+        if (!uvm_config_db #({{CONFIG}}{{PARAMS_13}})::get(this, "", "{{CFG}}", {{CFG}})) begin
+            `uvm_fatal("{{ENVIRONMENT}}", "configuration is not set.")
+        end
+        scb_en = {{CFG}}.scb_en;
+        fault_inject_en = {{CFG}}.fault_inject_en;
+        cov_en = {{CFG}}.cov_en;
+        ref_latency = {{CFG}}.ref_latency;
 
-		i_agt = {{INAGT}}{{PARAMS_17}}::type_id::create("i_agt", this);
-		uvm_config_db #({{CONFIG}}{{PARAMS_13}})::set(this, "i_agt", "{{CFG}}", {{CFG}});
+        i_agt = {{INAGT}}{{PARAMS_17}}::type_id::create("i_agt", this);
+        uvm_config_db #({{CONFIG}}{{PARAMS_13}})::set(this, "i_agt", "{{CFG}}", {{CFG}});
 
-		if (cov_en) begin
-			cov = {{COV}}{{PARAMS_23}}::type_id::create("cov", this);
-			cov_sti_fifo = new("cov_sti_fifo", this);
-		end
+        if (cov_en) begin
+            cov = {{COV}}{{PARAMS_23}}::type_id::create("cov", this);
+            cov_sti_fifo = new("cov_sti_fifo", this);
+        end
 
-		o_agt = {{OUTAGT}}{{PARAMS_20}}::type_id::create("o_agt", this);
-		uvm_config_db #({{CONFIG}}{{PARAMS_13}})::set(this, "o_agt", "{{CFG}}", {{CFG}});
+        o_agt = {{OUTAGT}}{{PARAMS_20}}::type_id::create("o_agt", this);
+        uvm_config_db #({{CONFIG}}{{PARAMS_13}})::set(this, "o_agt", "{{CFG}}", {{CFG}});
 
-		if (!scb_en) begin
-			return;
-		end
+        if (!scb_en) begin
+            return;
+        end
 
-		mdl = {{MDL}}{{PARAMS_26}}::type_id::create("mdl", this);
-		scb = {{SCB}}{{PARAMS_29}}::type_id::create("scb", this);
-		uvm_config_db #({{CONFIG}}{{PARAMS_13}})::set(this, "mdl", "{{CFG}}", {{CFG}});
-		uvm_config_db #({{CONFIG}}{{PARAMS_13}})::set(this, "scb", "{{CFG}}", {{CFG}});
+        mdl = {{MDL}}{{PARAMS_26}}::type_id::create("mdl", this);
+        scb = {{SCB}}{{PARAMS_29}}::type_id::create("scb", this);
+        uvm_config_db #({{CONFIG}}{{PARAMS_13}})::set(this, "mdl", "{{CFG}}", {{CFG}});
+        uvm_config_db #({{CONFIG}}{{PARAMS_13}})::set(this, "scb", "{{CFG}}", {{CFG}});
 
-		if (fault_inject_en) begin
-			fi = {{SCBFI}}{{PARAMS_32}}::type_id::create("fi", this);
-		end
+        if (fault_inject_en) begin
+            fi = {{SCBFI}}{{PARAMS_32}}::type_id::create("fi", this);
+        end
 
-		mdl_sti_fifo = new("mdl_sti_fifo", this);
-		scb_sti_fifo = new("scb_sti_fifo", this);
-		scb_obs_fifo = new("scb_obs_fifo", this);
-		scb_exp_fifo = new("scb_exp_fifo", this, ref_latency);
-	endfunction
+        mdl_sti_fifo = new("mdl_sti_fifo", this);
+        scb_sti_fifo = new("scb_sti_fifo", this);
+        scb_obs_fifo = new("scb_obs_fifo", this);
+        scb_exp_fifo = new("scb_exp_fifo", this, ref_latency);
+    endfunction
 
-	function void connect_phase(uvm_phase phase);
-		super.connect_phase(phase);
+    function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
 
-		if (cov_en) begin
-			i_agt.ap.connect(cov_sti_fifo.analysis_export);
-			cov.imon_getp.connect(cov_sti_fifo.blocking_get_export);
-		end
+        if (cov_en) begin
+            i_agt.ap.connect(cov_sti_fifo.analysis_export);
+            cov.imon_getp.connect(cov_sti_fifo.blocking_get_export);
+        end
 
-		if (!scb_en) begin
-			return;
-		end
+        if (!scb_en) begin
+            return;
+        end
 
-		i_agt.ap.connect(mdl_sti_fifo.analysis_export);
-		mdl.imon_getp.connect(mdl_sti_fifo.blocking_get_export);
+        i_agt.ap.connect(mdl_sti_fifo.analysis_export);
+        mdl.imon_getp.connect(mdl_sti_fifo.blocking_get_export);
 
-		i_agt.ap.connect(scb_sti_fifo.analysis_export);
-		scb.imon_getp.connect(scb_sti_fifo.nonblocking_get_export);
+        i_agt.ap.connect(scb_sti_fifo.analysis_export);
+        scb.imon_getp.connect(scb_sti_fifo.nonblocking_get_export);
 
-		if (fault_inject_en) begin
-			o_agt.ap.connect(fi.imp);
-			fi.ap.connect(scb_obs_fifo.analysis_export);
-		end
-		else begin
-			o_agt.ap.connect(scb_obs_fifo.analysis_export);
-		end
-		scb.omon_getp.connect(scb_obs_fifo.blocking_get_export);
+        if (fault_inject_en) begin
+            o_agt.ap.connect(fi.imp);
+            fi.ap.connect(scb_obs_fifo.analysis_export);
+        end
+        else begin
+            o_agt.ap.connect(scb_obs_fifo.analysis_export);
+        end
+        scb.omon_getp.connect(scb_obs_fifo.blocking_get_export);
 
-		mdl.scb_putp.connect(scb_exp_fifo.blocking_put_export);
-		scb.mdl_getp.connect(scb_exp_fifo.nonblocking_get_export);
-	endfunction
+        mdl.scb_putp.connect(scb_exp_fifo.blocking_put_export);
+        scb.mdl_getp.connect(scb_exp_fifo.nonblocking_get_export);
+    endfunction
 endclass
 ```

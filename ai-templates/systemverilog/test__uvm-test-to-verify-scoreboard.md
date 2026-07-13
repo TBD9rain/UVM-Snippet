@@ -22,44 +22,44 @@ placeholders:
 ```systemverilog
 class {{TEST}} extends {{BASETEST}};
 
-	`uvm_component_utils({{TEST}})
+    `uvm_component_utils({{TEST}})
 
-	//  variable definition
-	function new(string name="{{TEST}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    //  variable definition
+    function new(string name="{{TEST}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	virtual function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    virtual function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		{{CFG}}.fault_inject_en = 1;
+        {{CFG}}.fault_inject_en = 1;
 
-		//  simulation exit due to too many errors
-		uvm_report_server::get_server().set_max_quit_count(0);
-		set_report_verbosity_level_hier(UVM_LOW);
-	endfunction
+        //  simulation exit due to too many errors
+        uvm_report_server::get_server().set_max_quit_count(0);
+        set_report_verbosity_level_hier(UVM_LOW);
+    endfunction
 
-	virtual function void report_phase(uvm_phase phase);
-		uvm_report_server rpt_ser;
-		int err_num;
+    virtual function void report_phase(uvm_phase phase);
+        uvm_report_server rpt_ser;
+        int err_num;
 
-		rpt_ser = get_report_server();
-		err_num = rpt_ser.get_severity_count(UVM_ERROR);
+        rpt_ser = get_report_server();
+        err_num = rpt_ser.get_severity_count(UVM_ERROR);
 
-		if (err_num == 0) begin
-			$write("\n");
-			$write("=======================\n");
-			$write("Scoreboard Test failed.\n");
-			$write("=======================\n");
-			$write("\n");
-		end
-		else begin
-			$write("\n");
-			$write("==========================\n");
-			$write("Scoreboard Test completed.\n");
-			$write("==========================\n");
-			$write("\n");
-		end
-	endfunction
+        if (err_num == 0) begin
+            $write("\n");
+            $write("=======================\n");
+            $write("Scoreboard Test failed.\n");
+            $write("=======================\n");
+            $write("\n");
+        end
+        else begin
+            $write("\n");
+            $write("==========================\n");
+            $write("Scoreboard Test completed.\n");
+            $write("==========================\n");
+            $write("\n");
+        end
+    endfunction
 endclass
 ```

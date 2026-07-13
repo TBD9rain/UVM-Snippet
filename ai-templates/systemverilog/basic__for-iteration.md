@@ -18,6 +18,6 @@ placeholders:
 
 ```systemverilog
 for (int {{I}} = 0; {{I}} < {{TAB_2}}; {{I}}++) begin
-	
+    
 end
 ```

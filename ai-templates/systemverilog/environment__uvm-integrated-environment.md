@@ -13,7 +13,7 @@ placeholders:
     default: "Environment"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -73,40 +73,40 @@ placeholders:
 ```systemverilog
 class {{ENVIRONMENT}}{{PARAMS_2}} extends uvm_env;
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{ENVIRONMENT}}{{PARAMS_4}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{ENVIRONMENT}}{{PARAMS_4}})
 
-	//  variable definition
-	{{CONFIG}}{{PARAMS_7}} {{CFG}};
+    //  variable definition
+    {{CONFIG}}{{PARAMS_7}} {{CFG}};
 
-	{{ENV0}}{{PARAMS_11}} {{ENV0_13}};
-	{{ENV1}}{{PARAMS_15}} {{ENV1_17}};
+    {{ENV0}}{{PARAMS_11}} {{ENV0_13}};
+    {{ENV1}}{{PARAMS_15}} {{ENV1_17}};
 
-	{{VSQR}}{{PARAMS_19}} {{VSQR_21}};
+    {{VSQR}}{{PARAMS_19}} {{VSQR_21}};
 
-	function new(string name="{{ENVIRONMENT}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{ENVIRONMENT}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		if (!uvm_config_db #({{CONFIG}}{{PARAMS_7}})::get(this, "", "{{CFG}}", {{CFG}})) begin
-			`uvm_fatal("{{ENVIRONMENT}}", "configuration is not set.")
-		end
+        if (!uvm_config_db #({{CONFIG}}{{PARAMS_7}})::get(this, "", "{{CFG}}", {{CFG}})) begin
+            `uvm_fatal("{{ENVIRONMENT}}", "configuration is not set.")
+        end
 
-		{{ENV0_13}} = {{ENV0}}{{PARAMS_11}}::type_id::create("{{ENV0_13}}", this);
-		{{ENV1_17}} = {{ENV1}}{{PARAMS_15}}::type_id::create("{{ENV1_17}}", this);
-		uvm_config_db #({{CONFIG}}{{PARAMS_7}})::set(this, "{{ENV0_13}}", "{{CFG}}", {{CFG}});
-		uvm_config_db #({{CONFIG}}{{PARAMS_7}})::set(this, "{{ENV1_17}}", "{{CFG}}", {{CFG}});
+        {{ENV0_13}} = {{ENV0}}{{PARAMS_11}}::type_id::create("{{ENV0_13}}", this);
+        {{ENV1_17}} = {{ENV1}}{{PARAMS_15}}::type_id::create("{{ENV1_17}}", this);
+        uvm_config_db #({{CONFIG}}{{PARAMS_7}})::set(this, "{{ENV0_13}}", "{{CFG}}", {{CFG}});
+        uvm_config_db #({{CONFIG}}{{PARAMS_7}})::set(this, "{{ENV1_17}}", "{{CFG}}", {{CFG}});
 
-		{{VSQR_21}} = {{VSQR}}{{PARAMS_19}}::type_id::create("{{VSQR_21}}", this);
-	endfunction
+        {{VSQR_21}} = {{VSQR}}{{PARAMS_19}}::type_id::create("{{VSQR_21}}", this);
+    endfunction
 
-	function void connect_phase(uvm_phase phase);
-		super.connect_phase(phase);
+    function void connect_phase(uvm_phase phase);
+        super.connect_phase(phase);
 
-		{{VSQR_21}}.sqr0 = {{ENV0_13}}.i_agt.sqr;
-		{{VSQR_21}}.sqr1 = {{ENV1_17}}.i_agt.sqr;
-	endfunction
+        {{VSQR_21}}.sqr0 = {{ENV0_13}}.i_agt.sqr;
+        {{VSQR_21}}.sqr1 = {{ENV1_17}}.i_agt.sqr;
+    endfunction
 endclass
 ```

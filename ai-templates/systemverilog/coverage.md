@@ -13,7 +13,7 @@ placeholders:
     default: "CoverageCollector"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -32,31 +32,31 @@ placeholders:
 ```systemverilog
 class {{COVERAGECOLLECTOR}}{{PARAMS_2}} extends uvm_component;
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{COVERAGECOLLECTOR}}{{PARAMS_4}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{COVERAGECOLLECTOR}}{{PARAMS_4}})
 
-	typedef {{TXN}} T;
+    typedef {{TXN}} T;
 
-	//  variable definition
-	uvm_blocking_get_port #(T) imon_getp;
-	T tc_txn;
+    //  variable definition
+    uvm_blocking_get_port #(T) imon_getp;
+    T tc_txn;
 
-	//  coverage group definition
-	
+    //  coverage group definition
+    
 
-	function new(string name="{{COVERAGECOLLECTOR}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{COVERAGECOLLECTOR}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		imon_getp = new("imon_getp", this);
-	endfunction
+        imon_getp = new("imon_getp", this);
+    endfunction
 
-	task main_phase(uvm_phase phase);
-		forever begin
-			imon_getp.get(tc_txn);
-		end
-	endtask
+    task main_phase(uvm_phase phase);
+        forever begin
+            imon_getp.get(tc_txn);
+        end
+    endtask
 endclass
 ```

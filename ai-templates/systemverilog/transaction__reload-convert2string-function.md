@@ -12,11 +12,11 @@ placeholders: []
 
 ```systemverilog
 virtual function string convert2string();
-	string s = super.convert2string();
+    string s = super.convert2string();
 
-	//  this class property to string
-	s = {s, $sformatf()};
+    //  this class property to string
+    s = {s, $sformatf()};
 
-	return s;
+    return s;
 endfunction
 ```

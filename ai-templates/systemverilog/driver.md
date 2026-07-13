@@ -13,7 +13,7 @@ placeholders:
     default: "Driver"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "TXN"
@@ -51,48 +51,48 @@ placeholders:
 ```systemverilog
 class {{DRIVER}}{{PARAMS_2}} extends uvm_driver #(.REQ ({{TXN}}));
 
-	`uvm_component{{PARAM_SUFFIX}}_utils({{DRIVER}}{{PARAMS_5}})
+    `uvm_component{{PARAM_SUFFIX}}_utils({{DRIVER}}{{PARAMS_5}})
 
-	//  variable definition
-	{{CONFIG}}{{PARAMS_8}} {{CFG}};
+    //  variable definition
+    {{CONFIG}}{{PARAMS_8}} {{CFG}};
 
-	virtual {{DUT_IF}}{{PARAMS_12}}.drv_mp vif;
+    virtual {{DUT_IF}}{{PARAMS_12}}.drv_mp vif;
 
-	function new(string name="{{DRIVER}}", uvm_component parent=null);
-		super.new(name, parent);
-	endfunction
+    function new(string name="{{DRIVER}}", uvm_component parent=null);
+        super.new(name, parent);
+    endfunction
 
-	function void build_phase(uvm_phase phase);
-		super.build_phase(phase);
+    function void build_phase(uvm_phase phase);
+        super.build_phase(phase);
 
-		if (!uvm_config_db #({{CONFIG}}{{PARAMS_8}})::get(this, "", "{{CFG}}", {{CFG}})) begin
-			`uvm_fatal("{{DRIVER}}", "configuration is not set.")
-		end
-		vif = {{CFG}}.vif;
-	endfunction
+        if (!uvm_config_db #({{CONFIG}}{{PARAMS_8}})::get(this, "", "{{CFG}}", {{CFG}})) begin
+            `uvm_fatal("{{DRIVER}}", "configuration is not set.")
+        end
+        vif = {{CFG}}.vif;
+    endfunction
 
-	task reset_phase(uvm_phase phase);
-		phase.raise_objection(this);
-		phase.drop_objection(this);
-	endtask
+    task reset_phase(uvm_phase phase);
+        phase.raise_objection(this);
+        phase.drop_objection(this);
+    endtask
 
-	task pre_main_phase(uvm_phase phase);
-		phase.raise_objection(this);
-		while(vif.rst_n !== 0) begin
-			@vif.cb;
-		end
-		phase.drop_objection(this);
-	endtask
+    task pre_main_phase(uvm_phase phase);
+        phase.raise_objection(this);
+        while(vif.rst_n !== 0) begin
+            @vif.cb;
+        end
+        phase.drop_objection(this);
+    endtask
 
-	task main_phase(uvm_phase phase);
-		forever begin
-			seq_item_port.get_next_item(req);
-			drive_req(req);
-			seq_item_port.item_done();
-		end
-	endtask
+    task main_phase(uvm_phase phase);
+        forever begin
+            seq_item_port.get_next_item(req);
+            drive_req(req);
+            seq_item_port.item_done();
+        end
+    endtask
 
-	task drive_req(REQ txn);
-	endtask
+    task drive_req(REQ txn);
+    endtask
 endclass
 ```

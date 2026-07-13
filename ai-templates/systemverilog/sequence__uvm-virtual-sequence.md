@@ -13,7 +13,7 @@ placeholders:
     default: "VirtualSequence"
   - name: "PARAMS_2"
     tabstop: 2
-    default: " #(\n\t{{TAB_3}}\n)"
+    default: " #(\n    {{TAB_3}}\n)"
   - name: "TAB_3"
     tabstop: 3
   - name: "PARAMS_4"
@@ -76,34 +76,34 @@ placeholders:
 ```systemverilog
 class {{VIRTUALSEQUENCE}}{{PARAMS_2}} extends uvm_sequence;
 
-	`uvm_object{{PARAM_SUFFIX}}_utils({{VIRTUALSEQUENCE}}{{PARAMS_4}})
+    `uvm_object{{PARAM_SUFFIX}}_utils({{VIRTUALSEQUENCE}}{{PARAMS_4}})
 
-	//  handler to sequencer
-	`uvm_declare_p_sequencer({{SEQUENCER}}{{PARAMS_7}})
+    //  handler to sequencer
+    `uvm_declare_p_sequencer({{SEQUENCER}}{{PARAMS_7}})
 
-	{{CONFIG}}{{PARAMS_10}} {{CFG}};
+    {{CONFIG}}{{PARAMS_10}} {{CFG}};
 
-	function new(string name="{{VIRTUALSEQUENCE}}");
-		super.new(name);
-	endfunction
+    function new(string name="{{VIRTUALSEQUENCE}}");
+        super.new(name);
+    endfunction
 
-	virtual task pre_start();
-		super.pre_start();
+    virtual task pre_start();
+        super.pre_start();
 
-		if (!uvm_config_db #({{CONFIG}}{{PARAMS_10}})::get(p_sequencer, "", "{{CFG}}", {{CFG}})) begin
-			`uvm_fatal("{{VIRTUALSEQUENCE}}", "configuration is not set.")
-		end
-	endtask
+        if (!uvm_config_db #({{CONFIG}}{{PARAMS_10}})::get(p_sequencer, "", "{{CFG}}", {{CFG}})) begin
+            `uvm_fatal("{{VIRTUALSEQUENCE}}", "configuration is not set.")
+        end
+    endtask
 
-	virtual task body();
-		{{SEQ0}}{{PARAMS_14}} {{SEQ0_16}};
-		{{SEQ1}}{{PARAMS_18}} {{SEQ1_20}};
+    virtual task body();
+        {{SEQ0}}{{PARAMS_14}} {{SEQ0_16}};
+        {{SEQ1}}{{PARAMS_18}} {{SEQ1_20}};
 
-		{{SEQ0_16}} = {{SEQ0}}{{PARAMS_14}}::type_id::create("{{SEQ0_16}}");
-		{{SEQ1_20}} = {{SEQ1}}{{PARAMS_18}}::type_id::create("{{SEQ1_20}}");
+        {{SEQ0_16}} = {{SEQ0}}{{PARAMS_14}}::type_id::create("{{SEQ0_16}}");
+        {{SEQ1_20}} = {{SEQ1}}{{PARAMS_18}}::type_id::create("{{SEQ1_20}}");
 
-		{{SEQ0_16}}.start(p_sequencer.{{SQR0}});
-		{{SEQ1_20}}.start(p_sequencer.{{SQR1}});
-	endtask
+        {{SEQ0_16}}.start(p_sequencer.{{SQR0}});
+        {{SEQ1_20}}.start(p_sequencer.{{SQR1}});
+    endtask
 endclass
 ```
