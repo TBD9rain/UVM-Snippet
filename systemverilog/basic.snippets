@@ -1,7 +1,7 @@
 #===================================================================================================
 #
 #   Target Code : SystemVerilog
-#   Version     : 1.0.7
+#   Version     : 1.1.0
 #
 #   Description
 #
@@ -12,6 +12,8 @@
 #   Author  : TBD9rain
 #
 #===================================================================================================
+
+extends verilog
 
 
 #--------------------------
@@ -159,6 +161,124 @@ endsnippet
 
 snippet "msg|message" "UVM Fatal Macro" rb
 \`uvm_fatal("${1:ID}", ${2:"${3:message}"})$0
+endsnippet
+
+
+#--------------
+# general class
+#--------------
+
+snippet class "empty class skeleton" bw
+class ${1:cls_name};
+
+	$0
+
+	function new;
+	endfunction
+
+endclass
+endsnippet
+
+#---------
+# variable
+#---------
+
+snippet "rand " "rand variable definition" rb
+rand bit ${1:[${2: 7}: 0]} ${0:var_name};
+endsnippet
+
+snippet "randc " "randc variable definition" rb
+randc bit ${1:[${2: 7}: 0]} ${0:var_name};
+endsnippet
+
+snippet "mailbox " "mailbox definition" rbA
+mailbox #(${1:data_type}) ${0:mb_name};
+endsnippet
+
+#------
+# block
+#------
+
+snippet "assert " "instant assert" rbA
+assert (${1:assert condition}) $0
+endsnippet
+
+snippet "fork " "fork block" rbA
+fork
+	$0
+${1|join,join_any,join_none|}
+endsnippet
+
+snippet "for " "for iteration" rbA
+for (int ${1:i} = 0; $1 < ${2:0}; $1++) begin
+	$0
+end
+endsnippet
+
+#-----------
+# subprocess
+#-----------
+
+snippet function "function skeleton" A
+function ${1:automatic }${2:void} ${3:func_name};
+$0
+endfunction
+endsnippet
+
+snippet task "task skeleton" A
+task ${1:automatic }${2:task_name};
+$0
+endtask
+endsnippet
+
+#---------
+# coverage
+#---------
+
+snippet covergroup "coverage model definition" bw
+covergroup ${1:covergroup_name}${2: (${3:
+//  sample signal
+const ref bit signal,}${4:
+//  option or bins argument
+int arg,}
+)};
+	//  type option
+	type_option.merge_instances = 0;    //  0: weighted average; 1: merge identical bins from instances
+	//  inst option
+	option.auto_bin_max = 64;
+	option.get_inst_coverage = 0;   //  1: enable tracking of each instance when merge_instances is set
+
+	//  coverage point definition$0
+
+	//  cross coverage definition
+
+endgroup
+endsnippet
+
+snippet coverpoint "coverage point definition" bw
+${1:label}`!p snip.rv = ': ' if t[1] else ''`coverpoint ${2:var_name} {
+	//  bins definition$0
+}
+endsnippet
+
+snippet cross "cross coverage definition" bw
+${1:label}`!p snip.rv = ': ' if t[1] else ''`cross ${2:var_or_label0, var_or_label1} {
+	//  bins definition$0
+}
+endsnippet
+
+snippet bins "bins description" bw
+${1|bins,ignore_bins,illegal_bins|} ${2:bin_name} = {$0};
+endsnippet
+
+#-----
+# bind
+#-----
+
+snippet "bind" "bind construct" rbA
+bind \$root.${1:target_inst_hier_path} ${2:bind_element}${3: #($4)} $5${6: (
+
+)};
 endsnippet
 
 
