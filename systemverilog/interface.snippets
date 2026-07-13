@@ -1,0 +1,69 @@
+#===================================================================================================
+#
+#   Target Code : SystemVerilog
+#   Version     : 1.1.3
+#
+#   Description
+#
+#   Additional info
+#       Get instruction with ":help UltiSnips".
+#       Use "snippet" or "sn" to trigger snippet for snippet edition.
+#
+#   Author  : TBD9rain
+#
+#===================================================================================================
+
+snippet interface "interface definition" bw
+interface ${1:if_name}${2: #()} (
+	input logic ${3:clk},
+	input logic ${4:rst_n});
+
+	//  DUT IO port
+	logic data_in_vld;
+	logic [ 7: 0] data_in;$0
+
+	logic data_out_vld;
+	logic [ 7: 0] data_out;
+
+	//  clock counter for time stamp
+	longint unsigned clk_cnt = 0;
+
+	always_ff @(${5|posedge,negedge|} $3) begin
+		clk_cnt <= clk_cnt + 1;
+	end
+
+	clocking cb @($5 $3);
+		output data_in_vld;
+		output data_in;
+	endclocking
+
+	//  driver
+	modport drv_mp (
+		clocking cb,
+		input $4);
+
+	//  monitor
+	modport mon_mp (
+		input $3,
+		input $4,
+
+		input data_in_vld,
+		input data_in,
+
+		input data_out_vld,
+		input data_out,
+
+		input clk_cnt);
+
+	//  DUT
+	modport dut_mp (
+		input $3,
+		input $4,
+
+		input data_in_vld,
+		input data_in,
+
+		output data_out_vld,
+		output data_out);
+endinterface
+endsnippet
