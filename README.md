@@ -21,7 +21,8 @@ consistently-structured testbench can be scaffolded in minutes.
   variables, `mailbox`, `fork`/`for`/`assert`, `function`/`task`, functional
   coverage (`covergroup`/`coverpoint`/`cross`/`bins`) and `bind`.
 - **Simulation flow** — QuestaSim UVM simulation and report `tcl` scripts and a
-  QuestaSim 2026.2 Makefile (Windows).
+  QuestaSim 2026.2 Makefile (Windows) with a Lattice PMI (Diamond/Radiant)
+  source-library hook for compiling PMI-based designs.
 
 ## Requirements
 
@@ -83,7 +84,7 @@ UVM-Snippet/
 | `tcl/questa_2024.2_sim.snippets` | `simulate` | QuestaSim 2024.2.1 UVM simulation script |
 | `tcl/questa_10.6c_sim.snippets`  | `simulate` | QuestaSim 10.6c UVM simulation script |
 | `tcl/questa_rpt.snippets`        | `report`   | QuestaSim UVM report script |
-| `make.snippets`                  | `makefile` | QuestaSim 2026.2 UVM simulation Makefile (Windows) |
+| `make.snippets`                  | `makefile` | QuestaSim 2026.2 UVM simulation Makefile (Windows), with a Lattice PMI (Diamond/Radiant) source-library hook |
 
 ## Component Naming Convention
 
