@@ -1,7 +1,7 @@
 #===================================================================================================
 #
 #   Target Code : SystemVerilog
-#   Version     : 1.3.0
+#   Version     : 1.3.1
 #
 #   Description
 #       UVM based scoreboard
@@ -31,7 +31,6 @@ class ${1:Scoreboard}${2: #(
 	uvm_blocking_get_port #(OTXN) omon_getp;
 	uvm_nonblocking_get_port #(OTXN) mdl_getp;$0
 
-	bit fault_inject_en = 0;
 	int unsigned ref_latency = 0;
 
 	function new(string name="$1", uvm_component parent=null);
@@ -44,7 +43,6 @@ class ${1:Scoreboard}${2: #(
 		if (!uvm_config_db #($12$13)::get(this, "", "$15", $15)) begin
 			\`uvm_fatal("$1", "configuration is not set.")
 		end
-		fault_inject_en = $15.fault_inject_en;
 		ref_latency = $15.ref_latency;
 
 		imon_getp = new("imon_getp", this);
