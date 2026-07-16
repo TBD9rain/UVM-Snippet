@@ -1,4 +1,4 @@
-# UVM-Snippet
+# uvm-snippet
 
 A [UltiSnips](https://github.com/SirVer/ultisnips) snippet library for building
 **UVM (Universal Verification Methodology)** testbenches in SystemVerilog, plus
@@ -42,7 +42,7 @@ into) one of those directories. For example:
 
 ```vim
 " Load snippets from a custom directory
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'path/to/UVM-Snippet/ultisnips']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'path/to/uvm-snippet/ultisnips']
 ```
 
 The UltiSnips sources live under `ultisnips/`, grouped by filetype directory
@@ -54,7 +54,7 @@ available.
 ## Repository Structure
 
 ```
-UVM-Snippet/
+uvm-snippet/
 ├── ultisnips/                  UltiSnips sources (Vim)
 │   ├── systemverilog/          SystemVerilog / UVM snippets (one file per component)
 │   ├── tcl/                    QuestaSim simulation & report script snippets
