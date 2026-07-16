@@ -10,6 +10,11 @@ environment — transactions, sequences, drivers, monitors, agents, scoreboards,
 reference models, coverage collectors, environments and tests — so a complete,
 consistently-structured testbench can be scaffolded in minutes.
 
+The same library is also published in an AI-friendly form under
+[`ai-skill/`](ai-skill/), so an AI agent (or any tool) can scaffold the same
+testbench programmatically without interpreting Vim/UltiSnips expansion
+semantics. See [AI-friendly templates](#ai-friendly-templates-ai-skill) below.
+
 ## Features
 
 - **Full UVM component set** — one snippet per verification component, all
@@ -124,12 +129,56 @@ A typical bottom-up flow: scaffold the `interface`, then `Txn` → `Sqr`/`Seq` �
 `package` snippet, wrap everything in a `testbench` top module, and drive it with
 the QuestaSim `simulate`/`report` scripts or the generated Makefile.
 
+## AI-friendly templates (`ai-skill/`)
+
+The `ai-skill/` directory holds an AI-consumable form of the exact same library.
+It exists so that an AI agent, or any non-Vim tool, can read a template,
+understand its customisation points from structured metadata, and fill them in —
+without having to interpret UltiSnips expansion semantics.
+
+```
+ai-skill/
+├── script/
+│   └── convert_ultisnips.py   UltiSnips → Markdown converter
+└── templates/
+    ├── FORMAT.md              full description of the template format
+    ├── manifest.json          index of every generated template
+    ├── systemverilog/*.md     one file per SystemVerilog snippet block
+    ├── tcl/*.md               QuestaSim TCL flow templates
+    └── make/*.md              Makefile template
+```
+
+Key points:
+
+- **Generated, not hand-written.** Every file under `ai-skill/templates/` is
+  produced from the `ultisnips/*.snippets` sources. The `ultisnips/` files remain
+  the single source of truth; do not edit generated templates by hand.
+- **One block, one file.** Each snippet block becomes one Markdown file: YAML
+  frontmatter (triggers, description, category, and an ordered list of
+  placeholders) followed by a single fenced code block whose customisation points
+  use a uniform `{{PLACEHOLDER}}` marker syntax.
+- **`manifest.json` is the index.** A tool can locate templates by `id`,
+  `triggers` or `category` from the manifest, then read only the files it needs
+  rather than loading every template.
+
+To regenerate the templates after changing a `.snippets` source or the converter,
+run from the repository root:
+
+```sh
+python ai-skill/script/convert_ultisnips.py
+```
+
+For the complete format specification — placeholder naming rules, derived
+placeholders, and how to fill a template — see
+[`ai-skill/templates/FORMAT.md`](ai-skill/templates/FORMAT.md).
+
 ## Author
 
 TBD9rain
 
 ---
 
-*This repository is a Vim/UltiSnips snippet collection; it does not itself compile
-or simulate any RTL. The generated code targets the UVM class library and, for the
-simulation flow, Siemens QuestaSim.*
+*This repository is a snippet collection — a Vim/UltiSnips form under `ultisnips/`
+and an AI-friendly form under `ai-skill/`; it does not itself compile or simulate
+any RTL. The generated code targets the UVM class library and, for the simulation
+flow, Siemens QuestaSim.*
