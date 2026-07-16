@@ -5,7 +5,7 @@ triggers: ["Scb", "Scoreboard"]
 description: "UVM Scoreboard"
 category: systemverilog
 ultisnips_flags: "rb"
-version: "1.3.0"
+version: "1.3.1"
 author: "TBD9rain"
 placeholders:
   - name: "SCOREBOARD"
@@ -68,7 +68,6 @@ class {{SCOREBOARD}}{{PARAMS_2}} extends uvm_scoreboard;
     uvm_blocking_get_port #(OTXN) omon_getp;
     uvm_nonblocking_get_port #(OTXN) mdl_getp;
 
-    bit fault_inject_en = 0;
     int unsigned ref_latency = 0;
 
     function new(string name="{{SCOREBOARD}}", uvm_component parent=null);
@@ -81,7 +80,6 @@ class {{SCOREBOARD}}{{PARAMS_2}} extends uvm_scoreboard;
         if (!uvm_config_db #({{CONFIG}}{{PARAMS_13}})::get(this, "", "{{CFG}}", {{CFG}})) begin
             `uvm_fatal("{{SCOREBOARD}}", "configuration is not set.")
         end
-        fault_inject_en = {{CFG}}.fault_inject_en;
         ref_latency = {{CFG}}.ref_latency;
 
         imon_getp = new("imon_getp", this);
