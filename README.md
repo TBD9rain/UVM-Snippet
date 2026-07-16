@@ -37,21 +37,26 @@ into) one of those directories. For example:
 
 ```vim
 " Load snippets from a custom directory
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'path/to/UVM-Snippet']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'path/to/UVM-Snippet/ultisnips']
 ```
 
-Snippet files are grouped by filetype directory (`systemverilog/`, `tcl/`) and
-top-level Makefile snippets (`make.snippets`), matching UltiSnips' per-filetype
-loading. The SystemVerilog snippets `extends verilog`, so any Verilog snippets in
-your setup remain available.
+The UltiSnips sources live under `ultisnips/`, grouped by filetype directory
+(`systemverilog/`, `tcl/`) plus the top-level Makefile snippets
+(`make.snippets`), matching UltiSnips' per-filetype loading. The SystemVerilog
+snippets `extends verilog`, so any Verilog snippets in your setup remain
+available.
 
 ## Repository Structure
 
 ```
 UVM-Snippet/
-├── systemverilog/      SystemVerilog / UVM snippets (one file per component)
-├── tcl/                QuestaSim simulation & report script snippets
-└── make.snippets       QuestaSim UVM simulation Makefile
+├── ultisnips/                  UltiSnips sources (Vim)
+│   ├── systemverilog/          SystemVerilog / UVM snippets (one file per component)
+│   ├── tcl/                    QuestaSim simulation & report script snippets
+│   └── make.snippets           QuestaSim UVM simulation Makefile
+└── ai-skill/                   AI-friendly, generated form of the same library
+    ├── script/                 convert_ultisnips.py (UltiSnips → Markdown converter)
+    └── templates/              generated Markdown templates + manifest.json
 ```
 
 ### SystemVerilog snippets (`systemverilog/`)

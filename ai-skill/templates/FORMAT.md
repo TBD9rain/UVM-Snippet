@@ -1,18 +1,18 @@
 # AI-friendly UVM template format
 
 The files under this directory are generated from the UltiSnips `*.snippets`
-sources in this repository by [`tools/convert_ultisnips.py`](../tools/convert_ultisnips.py).
+sources in this repository by [`ai-skill/script/convert_ultisnips.py`](../script/convert_ultisnips.py).
 They exist so that an AI agent (or any tool) can read a template, understand its
 customisation points from structured metadata, and fill them in — without having
 to interpret Vim/UltiSnips expansion semantics.
 
 **Do not edit generated files by hand.** Edit the `.snippets` source (or the
-converter) and re-run `python tools/convert_ultisnips.py`.
+converter) and re-run `python ai-skill/script/convert_ultisnips.py`.
 
 ## Layout
 
 ```
-ai-templates/
+ai-skill/templates/
 ├── FORMAT.md            # this document (hand-written, not generated)
 ├── manifest.json        # index of every generated template
 ├── systemverilog/*.md   # one file per SystemVerilog snippet block

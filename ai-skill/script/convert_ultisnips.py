@@ -7,7 +7,7 @@ choices ``${1|a,b|}`` and Python interpolation ``` `!p ...` ```) is convenient
 for interactive expansion inside an editor, but awkward for an AI agent to read
 and fill programmatically.
 
-This script parses every snippet block and emits, under ``ai-templates/``:
+This script parses every snippet block and emits, under ``ai-skill/templates/``:
 
   * one Markdown file per snippet block, with YAML frontmatter describing the
     trigger(s), description and placeholder metadata, and a fenced code block
@@ -24,7 +24,7 @@ Design principles
   unparseable construct, raises ``Unhandled`` and aborts the run rather than
   dropping semantics quietly.
 
-Run from anywhere:  ``python tools/convert_ultisnips.py``
+Run from anywhere:  ``python ai-skill/script/convert_ultisnips.py``
 """
 
 from __future__ import annotations
@@ -39,12 +39,13 @@ from pathlib import Path
 # Paths and per-category settings
 # ---------------------------------------------------------------------------
 
-REPO_ROOT = Path(__file__).resolve().parent.parent  # third_party/uvm-snippet
-OUT_DIR = REPO_ROOT / "ai-templates"
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent  # third_party/uvm-snippet
+SNIPPETS_DIR = REPO_ROOT / "ultisnips"
+OUT_DIR = REPO_ROOT / "ai-skill" / "templates"
 GENERATED_SUBDIRS = ("systemverilog", "tcl", "make")
 
-# Fenced-code language per category (category is the top-level source folder,
-# or "make" for the single top-level make.snippets file).
+# Fenced-code language per category (category is the top-level folder within
+# the ultisnips/ source tree, or "make" for the top-level make.snippets file).
 FENCE_LANG = {"systemverilog": "systemverilog", "tcl": "tcl", "make": "makefile"}
 
 
@@ -423,15 +424,12 @@ def render_frontmatter(meta, placeholders):
 
 
 def category_of(path: Path) -> str:
-    rel = path.relative_to(REPO_ROOT)
+    rel = path.relative_to(SNIPPETS_DIR)
     return rel.parts[0] if len(rel.parts) > 1 else "make"
 
 
 def main() -> int:
-    sources = sorted(
-        p for p in REPO_ROOT.rglob("*.snippets")
-        if "ai-templates" not in p.parts and ".git" not in p.parts
-    )
+    sources = sorted(SNIPPETS_DIR.rglob("*.snippets"))
     if not sources:
         print("error: no .snippets files found", file=sys.stderr)
         return 1
@@ -446,7 +444,7 @@ def main() -> int:
     total = 0
 
     for src in sources:
-        rel = src.relative_to(REPO_ROOT).as_posix()
+        rel = src.relative_to(SNIPPETS_DIR).as_posix()
         category = category_of(src)
         lang = FENCE_LANG.get(category, "")
         blocks = list(parse_file(src))
